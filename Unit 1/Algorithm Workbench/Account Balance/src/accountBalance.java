@@ -44,9 +44,9 @@ public class accountBalance {
         amountBeforeInterest = (startingBalance + totalDeposits) - totalWithdrawals;
         amountAfterInterest = amountBeforeInterest * monthlyInterest;
         grandTotal = amountBeforeInterest + amountAfterInterest;
-        float rounded = (float) (Math.round(grandTotal * 100) / 100.0);
+        float grandTotalRounded = (float) (Math.round(grandTotal * 100) / 100.0);
 
         // Displays balance to the user
-        System.out.println("Your grand total comes to: $" + rounded);
+        System.out.println("Your grand total comes to: $" + grandTotalRounded);
     }
 }
