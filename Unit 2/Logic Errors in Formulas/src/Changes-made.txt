@@ -1,0 +1,6 @@
+On line 27:
+- Added ()s around SCORE1 and SCORE2 variables
+- Casted variables as doubles
+
+On line 33:
+- Changed "5/9 (BOILING_IN_F - 32)" to "(BOILING_IN_F - 32) * 5/9"
