@@ -1,3 +1,14 @@
+/*
+ * This program was written by Kyle Martin on 5/22/2021 for CPT421 Java Programming Principles 1 during Summer Session 1
+ * at Southwestern College, Kansas.
+ *
+ * IMPORTANT: Normally I would not place a bunch of comments in my code describing what my code is doing as I like to
+ * have code that is written in a manner to be understandable while reading it. Though, do to the grading rubric I will
+ * explain my code.
+ *
+ * This app is written to help its users mpg from a trip.
+ */
+
 import java.util.Scanner;
 
 public class Mileage {
