@@ -1,0 +1,137 @@
+Question 1 
+Example code :
+// Warning! This code contains ERRORS!
+if (x == 1);
+	y = 2;
+else if (x == 2) ; 
+	y = 3;
+else if (x == 3);
+	y = 4;
+
+Fixed Code:
+if (x == 1) // Removed Semi-colon
+    y = 2;
+else if (x == 2) // Removed Semi-colon
+    y = 3;
+else if (x == 3)// Removed Semi-colon
+    y = 4;
+
+Question 2
+Example code: 
+// Warning! This code contains an ERROR!
+if (average = 100)
+   	System.out.println("Perfect average!");
+
+Fixed Code:
+if (average == 100) // Changed 'assignment' operator to 'is equal to' operator
+    System.out.println("Perfect average!");
+
+Question 3
+Example Code:
+// Warning! This code contains ERRORS!
+if (num2 == 0)
+	System.out.println("Division by zero is not possible.");
+	System.out.println("Please run the program again ");
+	System.out.println("and enter a number besides zero.");
+else
+	Quotient = num1 / num2;
+	System.out.print("The quotient of " + Num1);
+	System.out.print(" divided by " + Num2 + " is ");
+	System.out.println(Quotient);
+
+Fixed Code: 
+if (num2 == 0)
+	System.out.println("Division by zero is not possible.");
+	System.out.println("Please run the program again ");
+	System.out.println("and enter a number besides zero.");
+else
+	Quotient = num1 / num2;
+	System.out.print("The quotient of " + num1); // Changed to match correct variable name 'num1' instead of 'Num1'
+	System.out.print(" divided by " + num2 + " is "); // Changed to match correct variable name 'num2' instead of 'Num2'
+	System.out.println(Quotient);
+
+Question 4
+Example code:
+// Warning! This code contains ERRORS!
+switch (score)
+{
+	case (score > 90):
+		grade = 'A';
+		break;
+	case (score > 80):
+		grade = 'b';
+		break;
+	case (score > 70):
+		grade = 'C';
+		break;
+	case (score > 60):
+		grade = 'D';
+		break;
+	default:
+		grade = 'F';
+}
+
+Fixed Code:
+switch (score)
+{
+    case 90: // Swapped from boolean to int
+        grade = 'A';
+         break;
+     case 80: // Swapped from boolean to int
+         grade = 'B'; // Changed to Uppercase to be uniform
+         break;
+     case 70: // Swapped from boolean to int
+         grade = 'C';
+         break;
+     case 60: // Swapped from boolean to int
+         grade = 'D';
+         break;
+     default:
+         grade = 'F';
+}
+
+Question 5
+Example Code:
+if (!x > 20)
+
+Fixed Code:
+if (x <= 20) // Removed incorrect logic statement and added less than or equal to
+
+Question 6.
+Example Code:
+if (count >= 0 || count <= 100)
+
+Fixed Code:
+if (count >= 0 && count <= 100) // Changed OR logic operator to AND logic operator
+
+Question 7:
+Example code:
+if  (count < 0 && count > 100)
+
+Fixed Code:
+if (count > 0 && count < 100) // swapped less than and greater than operators to ensure statement checks if count is between 0 and 100
+
+Question 8:
+Example Code:
+z = (a < 10) : 0 ? 7;
+
+Fixed code:
+z = (a < 10) ? 0 : 7; // Moved conditional operator to correct position in statement
+
+Question 9
+Example Code:
+if (partNumber.equals("BQ789W4"))
+	available = true;
+
+Fixed Code:
+if (partNumber.equalsIgnoreCase("BQ789W4")) // Changed to a case-insensitive comparison
+    available = true;
+
+Question 10
+Example Code: 
+double value = 12345.678;
+System.out.printf("%.2d", value);
+
+Fixed Code:
+double value = 12345.678;
+System.out.printf("%.2f", value); // Changed d to f as f deals with float or double variables. d deals with int, short, and long data types.
