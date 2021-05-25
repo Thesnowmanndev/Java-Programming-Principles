@@ -37,6 +37,7 @@ Unit 1/Find The Error/.idea/modules.xml
 Unit 1/Find The Error/.idea/vcs.xml
 Unit 1/Find The Error/.idea/workspace.xml
 Unit 1/Find The Error/Find The Error.iml
+Unit 1/martinkunit1/*
 
 *.xml
 *.iml
@@ -45,3 +46,4 @@ Unit 1/Algorithm Workbench/Available Credit/out/production/Account Balance/Avail
 *.docx
 *.ppt
 Programming Challenges/2. Chapter 2/4. Diamond Pattern/out/production/4. Diamond Pattern/Diamond Pattern Console Output.pdf
+*.zip
