@@ -38,6 +38,9 @@ Unit 1/Find The Error/.idea/vcs.xml
 Unit 1/Find The Error/.idea/workspace.xml
 Unit 1/Find The Error/Find The Error.iml
 Unit 1/martinkunit1/*
+.idea/*
+*/.idea/
+*/.idea/*
 
 *.xml
 *.iml
