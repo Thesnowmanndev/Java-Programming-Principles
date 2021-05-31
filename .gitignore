@@ -42,6 +42,8 @@ Unit 1/martinkunit1/*
 */.idea/
 */.idea/*
 
+*/out/*
+
 *.xml
 *.iml
 *.class
