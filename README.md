@@ -7,7 +7,7 @@ This repository was created for my 6 week class Java Programming Principles 1 at
 
 ---
 
-## Course Outcomes
+## Java Programming Principles 1 - Course Outcomes
 
 1.	Demonstrate the mastery of the fundamentals of Java programming language.
 2.	Apply and analyze the principles of object-oriented programming using the Java programming language.
