@@ -21,6 +21,22 @@ public class SaveAndExit {
         }
     }
 
+    public static void saveBalance(Greeter greeter, Long balance) {
+        File jsonSaveFile = new File("CasinoSim.json");
+        if (jsonSaveFile.exists()) {
+            JSONObject saveFile = new JSONObject();
+            saveFile.put("username", greeter.getUserName());
+            saveFile.put("balance", balance);
+            try (FileWriter file = new FileWriter("CasinoSim.json")) {
+                file.write(saveFile.toString());
+                file.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
     public static void createUsername(Greeter greeter, Scanner input) {
         JSONObject saveFile = new JSONObject();
 
@@ -50,13 +66,8 @@ public class SaveAndExit {
             Object obj = parser.parse(new FileReader("CasinoSim.json"));
             JSONObject jsonObject = (JSONObject) obj;
             String username = (String) jsonObject.get("username");
-            // int balance = (int) jsonObject.get("balance");
             greeter.setUserName(username);
-        }  catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
     }

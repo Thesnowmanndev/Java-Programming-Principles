@@ -22,6 +22,6 @@ public class CasinoSimulation {
         gameLoader.setGameChoice();
 
         // Load Chosen Game
-        
+        gameLoader.loadGameChoice(greeter, input);
     }
 }
