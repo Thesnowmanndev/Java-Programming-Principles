@@ -5,16 +5,29 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.NumberFormat;
+import java.util.Scanner;
 
 public class MoneyHandler {
     private long moneyBalance;
 
     public void setMoneyBalance(long balance) {
         moneyBalance = balance;
+    }
+
+    public void depositMoney(Greeter greeter, Scanner input) {
+        System.out.println("How much would you like to deposit? Minimum $20 Maximum $1000");
+        int depositedMoney = input.nextInt();
+        if (depositedMoney > 1000) {
+            System.out.println("Invalid amount, too high!");
+        } else if (depositedMoney < 20) {
+            System.out.println("Invalid amount, too low!");
+        } else {
+            setMoneyBalance(depositedMoney);
+            System.out.println("Your Balance is $" + getMoneyBalance());
+            SaveAndExit.saveBalance(greeter, (long) depositedMoney);
+        }
     }
 
     public long getMoneyBalance() {

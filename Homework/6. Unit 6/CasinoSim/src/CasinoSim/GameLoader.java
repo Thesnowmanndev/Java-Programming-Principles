@@ -34,10 +34,10 @@ public class GameLoader {
         return gameChoice;
     }
 
-    public void loadGameChoice(Greeter greeter, Scanner input) {
+    public void loadGameChoice(Greeter greeter, Scanner input, MoneyHandler moneyHandler) {
         int chosenGame = getGameChoice();
         if (chosenGame == 1) {
-            loadSlotMachine(greeter, input);
+            loadSlotMachine(greeter, input, moneyHandler);
         } else if (chosenGame == 2) {
             // Black Jack
         } else if (chosenGame == 3) {
@@ -48,9 +48,9 @@ public class GameLoader {
         }
     }
 
-    public void loadSlotMachine(Greeter greeter, Scanner input) {
+    public void loadSlotMachine(Greeter greeter, Scanner input, MoneyHandler moneyHandler) {
         SlotMachine slotMachine = new SlotMachine();
         slotMachine.startMessage();
-        slotMachine.playSlots(greeter, input);
+        slotMachine.playSlots(greeter, input, moneyHandler);
     }
 }
