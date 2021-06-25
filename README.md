@@ -56,3 +56,5 @@ This repository was created for my 6 week class Java Programming Principles 1 an
 -	Review, solidify and apply knowledge, techniques and problem-solving skills learned in the previous weeks by implementing a final project.
 
 ---
+
+## Java Programming Principles 2 - Course Outcomes
