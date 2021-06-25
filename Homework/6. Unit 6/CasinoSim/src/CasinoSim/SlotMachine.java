@@ -125,7 +125,7 @@ public class SlotMachine {
             totalWinnings += winningMoney;
 
             /* Ensure total winnings doesnt display negative value */
-            if (getTotalWinnings() <= 0) {
+            if (totalWinnings <= 0) {
                 setTotalWinnings();
             }
             System.out.println("Your total winnings so far is $" + totalWinnings);
