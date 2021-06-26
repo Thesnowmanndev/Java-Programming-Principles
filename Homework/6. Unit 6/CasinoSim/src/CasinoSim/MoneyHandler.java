@@ -17,6 +17,7 @@ public class MoneyHandler {
     }
 
     public void depositMoney(Greeter greeter, Scanner input) {
+        System.out.println("Your balance is $" + getMoneyBalance());
         System.out.println("How much would you like to deposit? Minimum $20 Maximum $1000");
         int depositedMoney = input.nextInt();
         if (depositedMoney > 1000) {

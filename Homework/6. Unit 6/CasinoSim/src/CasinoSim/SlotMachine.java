@@ -122,8 +122,9 @@ public class SlotMachine {
             System.out.println("~~~~~~~~~~~~~~~~~~~~");
             initialMoney += winningMoney;
             System.out.println("Your balance is: $" + initialMoney);
-            totalWinnings += winningMoney;
 
+            // Show total winnings
+            totalWinnings += winningMoney;
             /* Ensure total winnings doesnt display negative value */
             if (totalWinnings <= 0) {
                 setTotalWinnings();

@@ -39,7 +39,7 @@ public class GameLoader {
         if (chosenGame == 1) {
             loadSlotMachine(greeter, input, moneyHandler);
         } else if (chosenGame == 2) {
-            // Black Jack
+            loadBlackjack(greeter, input, moneyHandler);
         } else if (chosenGame == 3) {
             System.out.println("Goodbye, see you next time " + greeter.getUserName() + ".");
             System.exit(0);
@@ -52,5 +52,11 @@ public class GameLoader {
         SlotMachine slotMachine = new SlotMachine();
         slotMachine.startMessage();
         slotMachine.playSlots(greeter, input, moneyHandler);
+    }
+
+    public void loadBlackjack(Greeter greeter, Scanner input, MoneyHandler moneyHandler) {
+        BlackJack blackJack = new BlackJack();
+        blackJack.startMessage();
+        blackJack.playBlackjack(greeter, input, moneyHandler);
     }
 }

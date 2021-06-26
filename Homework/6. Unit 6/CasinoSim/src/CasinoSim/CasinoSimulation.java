@@ -13,6 +13,7 @@ public class CasinoSimulation {
 
         // Check for Save File:
         SaveAndExit.checkForSaveFile(greeter, input);
+        moneyHandler.checkForSaveFile();
 
         // Welcome User:
         System.out.println("Welcome " + greeter.getUserName() + ".");
