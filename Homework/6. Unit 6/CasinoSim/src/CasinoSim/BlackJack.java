@@ -14,14 +14,6 @@ package CasinoSim;
 import java.util.Scanner;
 
 public class BlackJack {
-    /* Requirements */
-    // 1. Play must be a loop while under 21
-    // 2. Roll dice? 2 six sided dice
-    // 3. Round start, simulate rolling two six-sided dice. Roll for computer first. Ask user whether or not want to roll dice
-    // 4. Loop keeps a running total of both computer and users points
-    // 5. Computers total remains hidden till loop has finished
-    // 6. After loop completes, reveal computer total, player with most points without going over 21 wins
-    // 7. ask play again. If so repeat. In exit display total amount of money won as well as balance
 
     long initialMoney;
     long winningMoney;

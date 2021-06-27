@@ -40,7 +40,7 @@ public class SlotMachine {
     public boolean replay(String replayChoice){
         String flag = replayChoice.toLowerCase();
         return flag.equals("y");
-
+        // Check valid response
     }
 
     // Set the three slots
