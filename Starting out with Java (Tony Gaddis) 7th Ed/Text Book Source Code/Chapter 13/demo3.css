@@ -1,0 +1,8 @@
+.root {
+   -fx-font-family: serif;
+}
+
+.label {
+   -fx-font-size: 14pt;
+   -fx-font-weight: bold;
+}

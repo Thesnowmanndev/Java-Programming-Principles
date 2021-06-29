@@ -1,0 +1,5 @@
+.label, .button{
+   -fx-font-family: cursive;
+   -fx-font-size: 14pt;
+   -fx-font-style: italic;
+}

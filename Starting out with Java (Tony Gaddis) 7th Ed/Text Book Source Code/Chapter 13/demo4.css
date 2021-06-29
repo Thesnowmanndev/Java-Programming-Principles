@@ -1,0 +1,8 @@
+.root {
+   -fx-font-size: 20pt;
+}
+
+.label {
+   -fx-font-size: 10pt;
+   -fx-font-weight: bold;
+}
