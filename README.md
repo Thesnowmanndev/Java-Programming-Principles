@@ -73,7 +73,7 @@ Upon successfully completing this course, the learner will be able to:
 6.	Develop database applications in Java.
 7.	Build programming skills with hands-on experience for problem solving with Java.
 
-Unit 1 Learning Objectives:
+### Unit 1 Learning Objectives:
 -	Analyze and apply the principles of object-oriented programming, in particular inheritance and polymorphism
 -	Explain the concepts of super class and subclass.
 -	Use the techniques of calling constructors of super classes and overriding superclass methods.
@@ -81,7 +81,7 @@ Unit 1 Learning Objectives:
 -	Analyze and apply abstract class, abstract method and interface.
 
 
-Unit 2 Learning Objectives:
+### Unit 2 Learning Objectives:
 -	Use the techniques of Java exception handling and exception throwing using the try, catch, finally, throw statements and etc.
 -	Analyze and apply the methods of writing data to and reading data from a binary file, and the application of the RandomAccessFile class.
 -	Explain the concept of serialization.
@@ -89,23 +89,23 @@ Unit 2 Learning Objectives:
 -	Create event listener classes to handle action events.
 -	Explore the application of the layout managers and the BorderFactory class.
 
-Unit 3 Learning Objectives:
+### Unit 3 Learning Objectives:
 -	Explain the JavaFX class hierarchy.
 -	Develop GUI applications using RadioButton, CheckBox, ListView, ComboBox, Slider, TextArea, and Menus
 -	Create event listener classes to handle action events.
 -	Create mnemonics and tool tips for GUI components.
 
-Unit 4 Learning Objectives:
+### Unit 4 Learning Objectives:
 -	Use the techniques of recursion to create advanced algorithms.
 -	Analyze and apply classes to create Graphics and Effects.
 -	Create mouse listener and mouse motion listener classes to handle mouse events.
 -	Use problem solving skills with recursion.
 
-Unit 5 Learning Objectives:
+### Unit 5 Learning Objectives:
 
 -	Explain the concepts of relational database management systems and SQL.
 -	Analyze and apply the JDBC API.
 -	Use the techniques of processing SQL statements with JDBC including retrieving data, inserting rows, updating and deleting existing row, creating and deleting tables and displaying result sets.
 
-Unit 6 Learning Objectives:
+### Unit 6 Learning Objectives:
 -	Apply concepts, techniques and problem-solving skills from Units 1-5 by in a final project.
