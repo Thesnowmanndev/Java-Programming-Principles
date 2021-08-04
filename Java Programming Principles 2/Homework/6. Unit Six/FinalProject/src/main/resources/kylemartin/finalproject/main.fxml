@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="bg-dark" stylesheets="@CSS/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label stylesheets="@CSS/styles.css" text="CONFIGURE YOUR SYSTEM" textFill="#dddddd" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Calibri" size="48.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="bg-lighter" stylesheets="@CSS/styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="caseBrand" alignment="CENTER" prefHeight="100.0" prefWidth="325.0" text="CASE BRAND" textAlignment="CENTER" textFill="#909090">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Line endX="-101.03553771972656" endY="86.29289245605469" scaleY="0.85" startX="-100.0" stroke="#222222" strokeLineCap="ROUND" strokeWidth="2.0" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

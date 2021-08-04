@@ -1,0 +1,21 @@
+/* General */
+.bg-dark {
+    -fx-background-color: #222831;
+}
+
+.bg-lighter {
+    -fx-background-color: #34363C;
+}
+
+/* TEXT COLOR */
+.text-primary {
+    color: #F05454;
+}
+
+/*
+Color Pallet -
+Lightest: #DDDDDD
+Darkest: #222831
+Middle: #30475E
+Accent: #F05454
+*/
