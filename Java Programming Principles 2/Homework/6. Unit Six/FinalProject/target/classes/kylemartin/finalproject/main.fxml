@@ -1,30 +1,262 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="bg-dark" stylesheets="@CSS/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <Label stylesheets="@CSS/styles.css" text="CONFIGURE YOUR SYSTEM" textFill="#dddddd" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="Calibri" size="48.0" />
-         </font>
-      </Label>
-   </top>
-   <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="bg-lighter" stylesheets="@CSS/styles.css" BorderPane.alignment="CENTER">
+<Pane fx:id="ApplicationBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kylemartin.finalproject.ConfiguratorController">
+   <children>
+      <HBox fx:id="ApplicationRoot" prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <Label fx:id="caseBrand" alignment="CENTER" prefHeight="100.0" prefWidth="325.0" text="CASE BRAND" textAlignment="CENTER" textFill="#909090">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-            <Line endX="-101.03553771972656" endY="86.29289245605469" scaleY="0.85" startX="-100.0" stroke="#222222" strokeLineCap="ROUND" strokeWidth="2.0" />
+            <VBox id="LeftSideBar" fx:id="SideBar" prefHeight="720.0" prefWidth="306.0" style="-fx-background-color: #00263C;" stylesheets="@CSS/styles.css">
+               <children>
+                  <HBox fx:id="CompanyBanner" prefHeight="112.0" prefWidth="320.0">
+                     <children>
+                        <ImageView fx:id="CompanyLogo" fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" scaleX="0.75" scaleY="0.75">
+                           <image>
+                              <Image url="@images/computer.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="CompanyName" alignment="CENTER" prefHeight="120.0" prefWidth="195.0" text="Custom Computers" textAlignment="CENTER" textFill="#00a8e8" wrapText="true">
+                           <font>
+                              <Font name="Monospaced Italic" size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Button fx:id="MainScreenButton" alignment="CENTER" mnemonicParsing="false" onAction="#OnMainScreenButtonClick" prefHeight="77.0" prefWidth="320.0" style="-fx-background-color: #003459;" text="Main Screen" textAlignment="CENTER" textFill="WHITESMOKE">
+                     <font>
+                        <Font name="Modern No. 20" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="IntelScreenButton" alignment="CENTER" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#OnIntelScreenButtonClick" prefHeight="77.0" prefWidth="320.0" style="-fx-background-color: #005980;" text="Intel Computer" textAlignment="CENTER" textFill="WHITESMOKE">
+                     <font>
+                        <Font name="Modern No. 20" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="AMDScreenButton" alignment="CENTER" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#OnAMDScreenButtonClick" prefHeight="77.0" prefWidth="320.0" style="-fx-background-color: #003459;" text="AMD Computer" textAlignment="CENTER" textFill="WHITESMOKE">
+                     <font>
+                        <Font name="Modern No. 20" size="24.0" />
+                     </font>
+                  </Button>
+                  <VBox prefHeight="485.0" prefWidth="304.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="304.0" text="Your Custom Computer" textFill="WHITESMOKE" underline="true" />
+                        <HBox fx:id="cpuBranch" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="CPU" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="cpuNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="160.0" text="Processor" textAlignment="CENTER" textFill="#7b868a" />
+                              <Label fx:id="cpuPriceLabel" alignment="CENTER" prefHeight="30.0" prefWidth="71.0" text="0.0" textFill="#8aff9a" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="MemoryBranch" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="Memory" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="memoryNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="160.0" text="Memory" textAlignment="CENTER" textFill="#7b868a" />
+                              <Label fx:id="memoryPriceLabel" alignment="CENTER" prefHeight="30.0" prefWidth="71.0" text="0.0" textFill="#8aff9a" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="StorageSpaceBranch" layoutX="10.0" layoutY="60.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="Storage" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="storageNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="160.0" text="Storage" textAlignment="CENTER" textFill="#7b868a" />
+                              <Label fx:id="storagePriceLabel" alignment="CENTER" prefHeight="30.0" prefWidth="71.0" text="0.0" textFill="#8aff9a" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="GraphicsBranch" layoutX="10.0" layoutY="85.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="Graphics" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="graphicsNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="160.0" text="Graphics" textAlignment="CENTER" textFill="#7b868a" />
+                              <Label fx:id="graphicsPriceLabel" alignment="CENTER" prefHeight="30.0" prefWidth="71.0" text="0.0" textFill="#8aff9a" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="OperatingSystemBranch" layoutX="10.0" layoutY="110.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="OS" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="operatingSystemNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="160.0" text="Operating System" textAlignment="CENTER" textFill="#7b868a" />
+                              <Label fx:id="operatingSystemPriceLabel" alignment="CENTER" prefHeight="30.0" prefWidth="71.0" text="0.0" textFill="#8aff9a" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="OpticalDriveBranch" layoutX="10.0" layoutY="135.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="Optics" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="opticalDriveNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="160.0" text="Optical Drive" textAlignment="CENTER" textFill="#7b868a" />
+                              <Label fx:id="opticalDrivePriceLabel" alignment="CENTER" prefHeight="30.0" prefWidth="71.0" text="0.0" textFill="#8aff9a" />
+                           </children>
+                        </HBox>
+                        <Label alignment="CENTER" prefHeight="31.0" prefWidth="308.0" text="Included:" textAlignment="CENTER" textFill="WHITESMOKE" underline="true" />
+                        <HBox layoutX="10.0" layoutY="160.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="Audio" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="audioNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="227.0" text="Audio Device" textAlignment="CENTER" textFill="#7b868a" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="216.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="Speakers" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="speakersNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="227.0" text="Speakers" textAlignment="CENTER" textFill="#7b868a" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="241.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="Keyboard" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="keyboardNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="227.0" text="Keyboard" textAlignment="CENTER" textFill="#7b868a" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="266.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="Mouse" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="mouseNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="227.0" text="Mouse" textAlignment="CENTER" textFill="#7b868a" />
+                           </children>
+                        </HBox>
+                        <Label alignment="CENTER" prefHeight="22.0" prefWidth="304.0" text="Additional Software" textFill="WHITESMOKE" wrapText="true" />
+                        <HBox layoutX="10.0" layoutY="160.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="MS Student" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="msStudentNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="160.0" text="Declined" textAlignment="CENTER" textFill="#7b868a" />
+                              <Label fx:id="msStudentPriceLabel" alignment="CENTER" prefHeight="30.0" prefWidth="71.0" text="0.0" textFill="#8aff9a" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="338.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="MS Business" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="msBusinessNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="160.0" text="Declined" textAlignment="CENTER" textFill="#7b868a" />
+                              <Label fx:id="msBusinessPriceLabel" alignment="CENTER" prefHeight="30.0" prefWidth="71.0" text="0.0" textFill="#8aff9a" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="363.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="Accounting" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="accountingNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="160.0" text="Declined" textAlignment="CENTER" textFill="#7b868a" />
+                              <Label fx:id="accountingPriceLabel" alignment="CENTER" prefHeight="30.0" prefWidth="71.0" text="0.0" textFill="#8aff9a" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="388.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="82.0" text="Graphics" textAlignment="CENTER" textFill="WHITESMOKE" />
+                              <Label fx:id="graphicsPackageNameLabel" alignment="CENTER" prefHeight="25.0" prefWidth="160.0" text="Declined" textAlignment="CENTER" textFill="#7b868a" />
+                              <Label fx:id="graphicsPackagePriceLabel" alignment="CENTER" prefHeight="30.0" prefWidth="71.0" text="0.0" textFill="#8aff9a" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="413.0" prefHeight="25.0" prefWidth="304.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="188.0" text="Sub-Total Price:" textAlignment="CENTER" textFill="WHITESMOKE" underline="true" />
+                              <Label fx:id="subTotalPriceLabel" alignment="CENTER" prefHeight="24.0" prefWidth="117.0" text="0.0" textFill="#00ff22" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="submitOrderButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="310.0" style="-fx-background-color: #00A8E8;" text="Submit Order" textFill="WHITESMOKE">
+                           <font>
+                              <Font name="Monospaced Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <Pane fx:id="CustomizerRoot" prefHeight="720.0" prefWidth="978.0">
+               <children>
+                  <AnchorPane fx:id="mainScreen" prefHeight="721.0" prefWidth="980.0" style="-fx-background-color: #005980;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="120.0" prefWidth="980.0" style="-fx-background-color: #00263C;" text="Choose Your Desired Brand" textFill="WHITESMOKE" underline="true">
+                           <font>
+                              <Font name="Monospaced Bold Italic" size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="MainScreenIntelButton" layoutX="510.0" layoutY="349.0" mnemonicParsing="false" onAction="#OnIntelScreenButtonClick" prefHeight="136.0" prefWidth="408.0" styleClass="btn-intel" stylesheets="@CSS/styles.css" />
+                        <Button fx:id="MainScreenAMDButton" alignment="CENTER" contentDisplay="CENTER" layoutX="62.0" layoutY="349.0" mnemonicParsing="false" onAction="#OnAMDScreenButtonClick" prefHeight="136.0" prefWidth="408.0" styleClass="btn-amd" stylesheets="@CSS/styles.css" />
+                        <Label alignment="CENTER" layoutX="62.0" layoutY="508.0" prefHeight="38.0" prefWidth="408.0" text="Base Cost - $599.00" textFill="WHITESMOKE">
+                           <font>
+                              <Font name="Monospaced Regular" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="510.0" layoutY="508.0" prefHeight="38.0" prefWidth="408.0" text="Base Cost - $499.00" textFill="WHITESMOKE">
+                           <font>
+                              <Font name="Monospaced Regular" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="intelScreen" prefHeight="721.0" prefWidth="976.0" style="-fx-background-color: #00263C;" visible="false">
+                     <children>
+                        <Pane prefHeight="59.0" prefWidth="976.0" style="-fx-background-color: #00171F;">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="85.0" layoutX="56.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/intel-logo.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITESMOKE" layoutX="224.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customize your Intel Computer -- (+ $ Prices are added to Base PC Price)" textAlignment="CENTER" wrappingWidth="529.0">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <VBox layoutY="58.0" prefHeight="664.0" prefWidth="976.0">
+                           <children>
+                              <HBox prefHeight="253.0" prefWidth="976.0">
+                                 <children>
+                                    <VBox prefHeight="221.0" prefWidth="327.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="CPU Selection" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox fx:id="cpuChoiceBox" prefHeight="65.0" prefWidth="325.0">
+                                             <tooltip>
+                                                <Tooltip text="Select a CPU Choice from the dropdown" />
+                                             </tooltip>
+                                          </ChoiceBox>
+                                          <Label fx:id="selectedCpuNameLabel" alignment="CENTER" prefHeight="70.0" prefWidth="325.0" text="CPU Name" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="70.0" prefWidth="325.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="72.0" prefWidth="193.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedCpuPriceLabel" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0" />
+                                    <VBox layoutX="337.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="253.0" prefWidth="976.0">
+                                 <children>
+                                    <VBox prefHeight="221.0" prefWidth="327.0" />
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0" />
+                                    <VBox layoutX="337.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="AMDScreen" prefHeight="721.0" prefWidth="976.0" visible="false" />
+               </children>
+            </Pane>
          </children>
       </HBox>
-   </bottom>
-</BorderPane>
+   </children>
+</Pane>

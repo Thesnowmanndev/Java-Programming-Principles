@@ -7,6 +7,19 @@
     -fx-background-color: #34363C;
 }
 
+/* Buttons */
+.btn-intel {
+    -fx-background-image: url('../images/intel-logo.png');
+    -fx-background-size: stretch;
+    -fx-background-repeat: no-repeat;
+}
+
+.btn-amd {
+    -fx-background-image: url('../images/amd-logo.png');
+    -fx-background-size: stretch;
+    -fx-background-repeat: no-repeat;
+}
+
 /* TEXT COLOR */
 .text-primary {
     color: #F05454;
@@ -14,8 +27,14 @@
 
 /*
 Color Pallet -
-Lightest: #DDDDDD
-Darkest: #222831
-Middle: #30475E
-Accent: #F05454
+    #F5F5F5
+    #B8BEC0
+    #7b868a
+    #00171f
+    #00263C
+    #003459
+    #005980
+    #007EA7
+    #0093C8
+    #00A8E8
 */
