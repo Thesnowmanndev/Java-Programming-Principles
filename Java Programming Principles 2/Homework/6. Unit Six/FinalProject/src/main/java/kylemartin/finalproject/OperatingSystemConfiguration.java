@@ -32,7 +32,7 @@ public class OperatingSystemConfiguration {
     }
 
     /* Methods */
-    public void transformOperatingSystemFields() {
+    public void setOperatingSystemFields() {
         if (this.operatingSystemStageZero) {
             setOperatingSystemName("Windows 8.1");
             setOperatingSystemPrice(0.00);
@@ -42,6 +42,30 @@ public class OperatingSystemConfiguration {
         } else if (this.operatingSystemStageTwo) {
             setOperatingSystemName("Linux");
             setOperatingSystemPrice(-89.00);
+        }
+    }
+
+    public void setOperatingSystemState(int selectedIndex) {
+        if (selectedIndex == 0) {
+            operatingSystemStageZero = true;
+            operatingSystemStageOne = false;
+            operatingSystemStageTwo = false;
+        } else if (selectedIndex == 1) {
+            operatingSystemStageZero = false;
+            operatingSystemStageOne = true;
+            operatingSystemStageTwo = false;
+        } else if (selectedIndex == 2) {
+            operatingSystemStageZero = false;
+            operatingSystemStageOne = false;
+            operatingSystemStageTwo = true;
+        } else if (selectedIndex == 3) {
+            operatingSystemStageZero = false;
+            operatingSystemStageOne = false;
+            operatingSystemStageTwo = false;
+        } else if (selectedIndex == 4) {
+            operatingSystemStageZero = false;
+            operatingSystemStageOne = false;
+            operatingSystemStageTwo = false;
         }
     }
 

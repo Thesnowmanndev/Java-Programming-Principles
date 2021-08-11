@@ -17,6 +17,7 @@ public class ConfiguratorController {
     // Main Screen
     @FXML
     protected void OnMainScreenButtonClick() {
+        resetIntelLabels();
         intelScreen.setVisible(false);
         AMDScreen.setVisible(false);
         mainScreen.setVisible(true);
@@ -25,10 +26,15 @@ public class ConfiguratorController {
         storageSpaceName = "Storage";
         graphicsName = "Graphics";
         operatingSystemName = "Operating System";
-        opticalDriveName = "Optical Drive";
+        opticsName = "Optical Drive";
 
         basePackagePrice = 0.0;
         processorPrice = 0.0;
+        memoryPrice = 0.0;
+        storageSpacePrice = 0.0;
+        graphicsPrice = 0.0;
+        operatingSystemPrice = 0.0;
+        opticsPrice = 0.0;
 
         updateLabels();
 
@@ -47,8 +53,11 @@ public class ConfiguratorController {
     }
 
     // Intel Screen
+    /* THIS METHOD NEEDS TO BE REFACTORED ONCE AMD, INTEL, AND ORDER SCREEN ARE COMPLETE */
+    /* Consolidate method into smaller methods each for processor, memory, storage graphics, OS, OD, and additional */
     @FXML
     public void OnIntelScreenButtonClick() {
+        resetIntelLabels();
         mainScreen.setVisible(false);
         AMDScreen.setVisible(false);
         intelScreen.setVisible(true);
@@ -59,14 +68,14 @@ public class ConfiguratorController {
         storageSpaceName = usersCustomizedComputer.baseIntel.getStorageSpaceName();
         graphicsName = usersCustomizedComputer.baseIntel.getGraphicsName();
         operatingSystemName = usersCustomizedComputer.baseIntel.getOperatingSystemName();
-        opticalDriveName = usersCustomizedComputer.baseIntel.getOpticalDriveName();
+        opticsName = usersCustomizedComputer.baseIntel.getOpticalDriveName();
 
         processorPrice = usersCustomizedComputer.baseIntel.getProcessorPrice();
         memoryPrice = usersCustomizedComputer.baseIntel.getMemoryPrice();
         storageSpacePrice = usersCustomizedComputer.baseIntel.getStorageSpacePrice();
         graphicsPrice = usersCustomizedComputer.baseIntel.getGraphicsPrice();
         operatingSystemPrice = usersCustomizedComputer.baseIntel.getOperatingSystemPrice();
-        opticalDrivePrice = usersCustomizedComputer.baseIntel.getOpticalDrivePrice();
+        opticsPrice = usersCustomizedComputer.baseIntel.getOpticalDrivePrice();
 
         basePackagePrice = 499.0;
 
@@ -91,16 +100,89 @@ public class ConfiguratorController {
         }));
 
         // Memory Choice
+        memoryChoiceBox.setItems(FXCollections.observableArrayList("4GB DDR3     + $0.0",
+                "6GB DDR3     + $28.00",
+                "8GB DDR3     + $58.00",
+                "12GB DDR3     + $108.00",
+                "16GB DDR3     + $176.00"));
+        memoryChoiceBox.setOnAction((Event -> {
+            int memorySelectedIndex = memoryChoiceBox.getSelectionModel().getSelectedIndex();
+            usersCustomizedComputer.memoryConfiguration.setMemoryState(memorySelectedIndex);
+            usersCustomizedComputer.memoryConfiguration.setMemoryFields();
 
+            memoryName = usersCustomizedComputer.memoryConfiguration.getMemoryName();
+            memoryPrice = usersCustomizedComputer.memoryConfiguration.getMemoryPrice();
+            selectedMemoryNameLabel.setText(memoryName);
+            selectedMemoryPriceLabel.setText(setFieldToString(memoryPrice));
+            updateLabels();
+        }));
 
         // Storage Choice
+        storageChoiceBox.setItems(FXCollections.observableArrayList("125GB 7.2K RPM SATA    + $0.0",
+                "250GB 7.2K RPM SATA     + $27.00",
+                "500GB 7.2K RPM SATA   + $50.00",
+                "1TB 7.2K RPM SATA    + $105.00"));
+        storageChoiceBox.setOnAction((Event -> {
+            int storageSelectedIndex = storageChoiceBox.getSelectionModel().getSelectedIndex();
+            usersCustomizedComputer.storageConfiguration.setStorageState(storageSelectedIndex);
+            usersCustomizedComputer.storageConfiguration.setStorageFields();
 
-
-        // Graphics Choice
-
+            storageSpaceName = usersCustomizedComputer.storageConfiguration.getStorageSpaceName();
+            storageSpacePrice = usersCustomizedComputer.storageConfiguration.getStorageSpacePrice();
+            selectedStorageNameLabel.setText(storageSpaceName);
+            selectedStoragePriceLabel.setText(setFieldToString(storageSpacePrice));
+            updateLabels();
+        }));
 
         // Optics Choice
+        opticsChoiceBox.setItems(FXCollections.observableArrayList("CD-Rom Drive    + $0.0",
+                "DVD Drive     + $17.00",
+                "Combo DVD/CDRW Drive   + $40.00",
+                "DVD and CDRW Drive    + $79.00"));
+        opticsChoiceBox.setOnAction((Event -> {
+            int opticsSelectedIndex = opticsChoiceBox.getSelectionModel().getSelectedIndex();
+            usersCustomizedComputer.opticalDriveConfiguration.setOpticsState(opticsSelectedIndex);
+            usersCustomizedComputer.opticalDriveConfiguration.setOpticsFields();
 
+            opticsName = usersCustomizedComputer.opticalDriveConfiguration.getOpticalDriveName();
+            opticsPrice = usersCustomizedComputer.opticalDriveConfiguration.getOpticalDrivePrice();
+            selectedOpticsNameLabel.setText(opticsName);
+            selectedOpticsPriceLabel.setText(setFieldToString(opticsPrice));
+            updateLabels();
+        }));
+
+        // Graphics Choice
+        graphicsChoiceBox.setItems(FXCollections.observableArrayList("Integrated 3D Graphics    + $0.0",
+                "NVIDIA GeForce G310 512MB DDR3     + $80.00",
+                "NVIDIA GeForce GT620 1GB DDR3   + $169.00",
+                "NVIDIA GeForce GT640 1GB GDDR5    + $490.00"));
+        graphicsChoiceBox.setOnAction((Event -> {
+            int graphicsSelectedIndex = graphicsChoiceBox.getSelectionModel().getSelectedIndex();
+            usersCustomizedComputer.graphicsConfiguration.setGraphicsState(graphicsSelectedIndex);
+            usersCustomizedComputer.graphicsConfiguration.setGraphicsFields();
+
+            graphicsName = usersCustomizedComputer.graphicsConfiguration.getGraphicsName();
+            graphicsPrice = usersCustomizedComputer.graphicsConfiguration.getGraphicsPrice();
+            selectedGraphicsNameLabel.setText(graphicsName);
+            selectedGraphicsPriceLabel.setText(setFieldToString(graphicsPrice));
+            updateLabels();
+        }));
+
+        // Operating System
+        operatingSystemChoiceBox.setItems(FXCollections.observableArrayList("Windows 8.1    + $0.0",
+                "Windows 8.1 Pro     + $59.00",
+                "Linux   - $89.00"));
+        operatingSystemChoiceBox.setOnAction((Event -> {
+            int operatingSystemSelectedIndex = operatingSystemChoiceBox.getSelectionModel().getSelectedIndex();
+            usersCustomizedComputer.operatingSystemConfiguration.setOperatingSystemState(operatingSystemSelectedIndex);
+            usersCustomizedComputer.operatingSystemConfiguration.setOperatingSystemFields();
+
+            operatingSystemName = usersCustomizedComputer.operatingSystemConfiguration.getOperatingSystemName();
+            operatingSystemPrice = usersCustomizedComputer.operatingSystemConfiguration.getOperatingSystemPrice();
+            selectedOperatingSystemNameLabel.setText(operatingSystemName);
+            selectedOperatingSystemPriceLabel.setText(setFieldToString(operatingSystemPrice));
+            updateLabels();
+        }));
 
         // MS Office Student
 
@@ -112,6 +194,21 @@ public class ConfiguratorController {
 
 
         // Graphics Software Package
+    }
+
+    public void resetIntelLabels() {
+        selectedCpuNameLabel.setText("Processor");
+        selectedCpuPriceLabel.setText(setFieldToString(0.0));
+        selectedMemoryNameLabel.setText("Memory");
+        selectedMemoryPriceLabel.setText(setFieldToString(0.0));
+        selectedStorageNameLabel.setText("Storage");
+        selectedStoragePriceLabel.setText(setFieldToString(0.0));
+        selectedOpticsNameLabel.setText("Optical Drive");
+        selectedOpticsPriceLabel.setText(setFieldToString(0.0));
+        selectedGraphicsNameLabel.setText("Graphics");
+        selectedGraphicsPriceLabel.setText(setFieldToString(0.0));
+        selectedOperatingSystemNameLabel.setText("Operating System");
+        selectedOperatingSystemPriceLabel.setText(setFieldToString(0.0));
     }
 
     @FXML
@@ -126,8 +223,8 @@ public class ConfiguratorController {
         graphicsPriceLabel.setText(setFieldToString(graphicsPrice));
         operatingSystemNameLabel.setText(operatingSystemName);
         operatingSystemPriceLabel.setText(setFieldToString(operatingSystemPrice));
-        opticalDriveNameLabel.setText(opticalDriveName);
-        opticalDrivePriceLabel.setText(setFieldToString(opticalDrivePrice));
+        opticalDriveNameLabel.setText(opticsName);
+        opticalDrivePriceLabel.setText(setFieldToString(opticsPrice));
 
         audioNameLabel.setText(AUDIO_NAME);
         speakersNameLabel.setText(SPEAKERS_NAME);
@@ -138,7 +235,7 @@ public class ConfiguratorController {
 
         // Update Subtotal Price
         double subtotalPrice = processorPrice + memoryPrice + storageSpacePrice + graphicsPrice + operatingSystemPrice +
-                opticalDrivePrice + msStudentPackagePrice + msBusinessPackagePrice + accountingPackagePrice +
+                opticsPrice + msStudentPackagePrice + msBusinessPackagePrice + accountingPackagePrice +
                 graphicsPackagePrice + basePackagePrice;
         subTotalPriceLabel.setText(setFieldToString(subtotalPrice));
     }
@@ -149,7 +246,7 @@ public class ConfiguratorController {
     private String storageSpaceName;
     private String graphicsName;
     private String operatingSystemName;
-    private String opticalDriveName;
+    private String opticsName;
     private final String AUDIO_NAME = usersCustomizedComputer.getAUDIO_NAME();
     private final String SPEAKERS_NAME = usersCustomizedComputer.getSPEAKERS_NAME();
     private final String KEYBOARD_NAME = usersCustomizedComputer.getKEYBOARD_NAME();
@@ -160,7 +257,7 @@ public class ConfiguratorController {
     private double storageSpacePrice;
     private double graphicsPrice;
     private double operatingSystemPrice;
-    private double opticalDrivePrice;
+    private double opticsPrice;
 
     private double msStudentPackagePrice;
     private double msBusinessPackagePrice;
@@ -185,6 +282,36 @@ public class ConfiguratorController {
     private Label selectedCpuNameLabel;
     @FXML
     private Label selectedCpuPriceLabel;
+    @FXML
+    private ChoiceBox<Object> memoryChoiceBox;
+    @FXML
+    private Label selectedMemoryNameLabel;
+    @FXML
+    private Label selectedMemoryPriceLabel;
+    @FXML
+    private ChoiceBox<Object> storageChoiceBox;
+    @FXML
+    private Label selectedStorageNameLabel;
+    @FXML
+    private Label selectedStoragePriceLabel;
+    @FXML
+    private ChoiceBox<Object> opticsChoiceBox;
+    @FXML
+    private Label selectedOpticsNameLabel;
+    @FXML
+    private Label selectedOpticsPriceLabel;
+    @FXML
+    private ChoiceBox<Object> graphicsChoiceBox;
+    @FXML
+    private Label selectedGraphicsNameLabel;
+    @FXML
+    private Label selectedGraphicsPriceLabel;
+    @FXML
+    private ChoiceBox<Object> operatingSystemChoiceBox;
+    @FXML
+    private Label selectedOperatingSystemNameLabel;
+    @FXML
+    private Label selectedOperatingSystemPriceLabel;
 
     // Side Panel
     @FXML

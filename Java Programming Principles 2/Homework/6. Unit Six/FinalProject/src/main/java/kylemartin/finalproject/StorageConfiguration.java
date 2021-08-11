@@ -36,7 +36,7 @@ public class StorageConfiguration {
     }
 
     /* Methods */
-    public void transformStorageFields(boolean storageState) {
+    public void setStorageFields() {
         if (this.storageStageZero) {
             setStorageSpaceName("125GB 7.2K RPM SATA");
             setStorageSpacePrice(0.00);
@@ -49,6 +49,40 @@ public class StorageConfiguration {
         } else if (this.storageStageThree) {
             setStorageSpaceName("1TB 7.2K RPM SATA");
             setStorageSpacePrice(105.00);
+        }
+    }
+
+    public void setStorageState(int selectedIndex) {
+        if (selectedIndex == 0) {
+            storageStageZero = true;
+            storageStageOne = false;
+            storageStageTwo = false;
+            storageStageThree = false;
+
+        } else if (selectedIndex == 1) {
+            storageStageZero = false;
+            storageStageOne = true;
+            storageStageTwo = false;
+            storageStageThree = false;
+
+        } else if (selectedIndex == 2) {
+            storageStageZero = false;
+            storageStageOne = false;
+            storageStageTwo = true;
+            storageStageThree = false;
+
+        } else if (selectedIndex == 3) {
+            storageStageZero = false;
+            storageStageOne = false;
+            storageStageTwo = false;
+            storageStageThree = true;
+
+        } else if (selectedIndex == 4) {
+            storageStageZero = false;
+            storageStageOne = false;
+            storageStageTwo = false;
+            storageStageThree = false;
+
         }
     }
 

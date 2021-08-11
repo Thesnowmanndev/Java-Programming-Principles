@@ -36,7 +36,7 @@ public class OpticalDriveConfiguration {
     }
 
     /* Methods */
-    public void transformOpticalDriveFields() {
+    public void setOpticsFields() {
         if (this.opticalDriveStageZero) {
             setOpticalDriveName("CD-Rom Drive");
             setOpticalDrivePrice(0.0);
@@ -49,6 +49,40 @@ public class OpticalDriveConfiguration {
         } else if (this.opticalDriveStageThree) {
             setOpticalDriveName("DVD and CDRW Drive");
             setOpticalDrivePrice(79.00);
+        }
+    }
+
+    public void setOpticsState(int selectedIndex) {
+        if (selectedIndex == 0) {
+            opticalDriveStageZero = true;
+            opticalDriveStageOne = false;
+            opticalDriveStageTwo = false;
+            opticalDriveStageThree = false;
+
+        } else if (selectedIndex == 1) {
+            opticalDriveStageZero = false;
+            opticalDriveStageOne = true;
+            opticalDriveStageTwo = false;
+            opticalDriveStageThree = false;
+
+        } else if (selectedIndex == 2) {
+            opticalDriveStageZero = false;
+            opticalDriveStageOne = false;
+            opticalDriveStageTwo = true;
+            opticalDriveStageThree = false;
+
+        } else if (selectedIndex == 3) {
+            opticalDriveStageZero = false;
+            opticalDriveStageOne = false;
+            opticalDriveStageTwo = false;
+            opticalDriveStageThree = true;
+
+        } else if (selectedIndex == 4) {
+            opticalDriveStageZero = false;
+            opticalDriveStageOne = false;
+            opticalDriveStageTwo = false;
+            opticalDriveStageThree = false;
+
         }
     }
 
