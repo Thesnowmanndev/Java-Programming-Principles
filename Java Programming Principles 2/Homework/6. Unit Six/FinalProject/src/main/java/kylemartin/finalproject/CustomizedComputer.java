@@ -10,6 +10,7 @@ public class CustomizedComputer {
     OpticalDriveConfiguration opticalDriveConfiguration = new OpticalDriveConfiguration();
     GraphicsConfiguration graphicsConfiguration = new GraphicsConfiguration();
     OperatingSystemConfiguration operatingSystemConfiguration = new OperatingSystemConfiguration();
+    AdditionalPackages additionalPackages = new AdditionalPackages();
 
 
     /* Getters */

@@ -20,6 +20,19 @@
     -fx-background-repeat: no-repeat;
 }
 
+/* Check Boxes */
+.check-box {
+    -fx-padding: 0 1em;
+}
+
+/* VBoxs */
+
+.additional-features {
+    -fx-border-style: solid;
+    -fx-border-width: 2px;
+    -fx-border-color: #f5f5f5;
+}
+
 /* TEXT COLOR */
 .text-primary {
     color: #F05454;

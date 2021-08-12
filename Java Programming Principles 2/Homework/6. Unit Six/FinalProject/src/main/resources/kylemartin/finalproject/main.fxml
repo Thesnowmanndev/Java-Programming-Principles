@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
@@ -185,7 +187,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="intelScreen" prefHeight="721.0" prefWidth="976.0" style="-fx-background-color: #00263C;" visible="false">
+                  <AnchorPane fx:id="intelScreen" prefHeight="722.0" prefWidth="976.0" style="-fx-background-color: #00263C;" visible="false">
                      <children>
                         <Pane prefHeight="59.0" prefWidth="976.0" style="-fx-background-color: #00171F;">
                            <children>
@@ -205,7 +207,7 @@
                            <children>
                               <HBox prefHeight="253.0" prefWidth="976.0">
                                  <children>
-                                    <VBox prefHeight="221.0" prefWidth="327.0">
+                                    <VBox prefHeight="221.0" prefWidth="327.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
                                        <children>
                                           <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Processor" textFill="WHITESMOKE" underline="true">
                                              <font>
@@ -238,7 +240,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0">
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
                                        <children>
                                           <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Random Access Memory" textFill="WHITESMOKE" underline="true">
                                              <font>
@@ -271,7 +273,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <VBox layoutX="337.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0">
+                                    <VBox layoutX="337.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
                                        <children>
                                           <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Storage Space" textFill="WHITESMOKE" underline="true">
                                              <font>
@@ -308,7 +310,7 @@
                               </HBox>
                               <HBox layoutX="10.0" layoutY="10.0" prefHeight="253.0" prefWidth="976.0">
                                  <children>
-                                    <VBox prefHeight="221.0" prefWidth="327.0">
+                                    <VBox prefHeight="221.0" prefWidth="327.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
                                        <children>
                                           <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Optical Drive" textFill="WHITESMOKE" underline="true">
                                              <font>
@@ -341,7 +343,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0">
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
                                        <children>
                                           <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Graphics Card" textFill="WHITESMOKE" underline="true">
                                              <font>
@@ -353,7 +355,7 @@
                                                 <Tooltip text="Select a graphics card choice from the dropdown to upgrade or downgrade your customized computer." />
                                              </tooltip>
                                           </ChoiceBox>
-                                          <Label fx:id="selectedGraphicsNameLabel" alignment="CENTER" prefHeight="70.0" prefWidth="325.0" text="Optics Name" textFill="WHITESMOKE">
+                                          <Label fx:id="selectedGraphicsNameLabel" alignment="CENTER" prefHeight="70.0" prefWidth="325.0" text="Graphics Name" textFill="WHITESMOKE" wrapText="true">
                                              <font>
                                                 <Font name="Monospaced Italic" size="18.0" />
                                              </font>
@@ -374,7 +376,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <VBox layoutX="337.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0">
+                                    <VBox layoutX="337.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
                                        <children>
                                           <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Operating System" textFill="WHITESMOKE" underline="true">
                                              <font>
@@ -399,6 +401,134 @@
                                                    </font>
                                                 </Label>
                                                 <Label fx:id="selectedOperatingSystemPriceLabel" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="244.0" prefWidth="976.0">
+                                 <children>
+                                    <VBox fx:id="additionalFeature1" prefHeight="216.0" prefWidth="245.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="244.0" text="Microsoft Office Home &amp; Student 2013" textFill="WHITESMOKE" underline="true" wrapText="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <CheckBox fx:id="msStudentCheckbox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#msStudentIsSelected" prefHeight="86.0" prefWidth="245.0" stylesheets="@CSS/styles.css" text="Add to Order (+$139)" textFill="WHITESMOKE">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <tooltip>
+                                                <Tooltip text="Add Microsoft Office Home and Student suite to your order. Microsoft Word, Powerpoint, Excel, and more." />
+                                             </tooltip>
+                                          </CheckBox>
+                                          <HBox prefHeight="74.0" prefWidth="245.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="76.0" prefWidth="132.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedMsStudentPriceLabel" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="additionalFeature2" layoutX="10.0" layoutY="10.0" prefHeight="216.0" prefWidth="245.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="244.0" text="Microsoft Office Home &amp; Business 2013" textFill="WHITESMOKE" underline="true" wrapText="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <CheckBox fx:id="msBusinessCheckbox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#msBusinessIsSelected" prefHeight="86.0" prefWidth="245.0" stylesheets="@CSS/styles.css" text="Add to order (+$219)" textFill="WHITESMOKE">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <tooltip>
+                                                <Tooltip text="Add Microsoft Office Home and Business package to your order. Microsoft Word, Powerpoint, Excel, and many more Microsoft Products" />
+                                             </tooltip>
+                                          </CheckBox>
+                                          <HBox prefHeight="74.0" prefWidth="245.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="76.0" prefWidth="132.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedMsBusinessPriceLabel" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="additionalFeature3" layoutX="255.0" layoutY="10.0" prefHeight="216.0" prefWidth="245.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="244.0" text="Accounting Package" textFill="WHITESMOKE" underline="true" wrapText="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <CheckBox fx:id="accountingCheckbox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#accountingIsSelected" prefHeight="86.0" prefWidth="245.0" stylesheets="@CSS/styles.css" text="Add to order (+$399)" textFill="WHITESMOKE">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <tooltip>
+                                                <Tooltip text="Add an accounting software suite package to your computer to assist you with all of your accounting needs." />
+                                             </tooltip>
+                                          </CheckBox>
+                                          <HBox prefHeight="74.0" prefWidth="245.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="76.0" prefWidth="132.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedAccountingPriceLabel" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="additionalFeature4" layoutX="500.0" layoutY="10.0" prefHeight="216.0" prefWidth="245.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="244.0" text="Graphics Package" textFill="WHITESMOKE" underline="true" wrapText="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <CheckBox fx:id="graphicsPackageCheckbox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#graphicsPackageIsSelected" prefHeight="86.0" prefWidth="245.0" stylesheets="@CSS/styles.css" text="Add to order (+$499)" textFill="WHITESMOKE">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <tooltip>
+                                                <Tooltip text="Add a graphics editing software package to your computer to assist in all of your graphic design projects." />
+                                             </tooltip>
+                                          </CheckBox>
+                                          <HBox prefHeight="74.0" prefWidth="245.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="76.0" prefWidth="132.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedGraphicsPackagePriceLabel" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
                                                    <font>
                                                       <Font name="Monospaced Regular" size="18.0" />
                                                    </font>
