@@ -7,8 +7,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
+import java.text.DecimalFormat;
+
 public class ConfiguratorController {
     CustomizedComputer usersCustomizedComputer = new CustomizedComputer();
+    DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
 
     /* Methods */
     public String setFieldToString (Double price) {
@@ -21,6 +24,8 @@ public class ConfiguratorController {
         intelScreen.setVisible(false);
         AMDScreen.setVisible(false);
         mainScreen.setVisible(true);
+        SubmitScreen.setVisible(false);
+
         processorName = "Processor";
         memoryName = "Memory";
         storageSpaceName = "Storage";
@@ -28,17 +33,7 @@ public class ConfiguratorController {
         operatingSystemName = "Operating System";
         opticsName = "Optical Drive";
 
-        basePackagePrice = 0.0;
-        processorPrice = 0.0;
-        memoryPrice = 0.0;
-        storageSpacePrice = 0.0;
-        graphicsPrice = 0.0;
-        operatingSystemPrice = 0.0;
-        opticsPrice = 0.0;
-        msStudentPackagePrice = 0.0;
-        msBusinessPackagePrice = 0.0;
-        accountingPackagePrice = 0.0;
-        graphicsPackagePrice = 0.0;
+        resetPrices();
 
         resetIntelScreen();
         resetSidebarLabels();
@@ -51,11 +46,116 @@ public class ConfiguratorController {
     }
 
     // AMD Screen
+    /* THIS METHOD NEEDS TO BE REFACTORED ONCE AMD, INTEL, AND ORDER SCREEN ARE COMPLETE */
+    /* Consolidate method into smaller methods each for processor, memory, storage graphics, OS, OD, and additional */
     @FXML
     public void OnAMDScreenButtonClick() {
+        resetSidebarLabels();
+        resetAMDScreen();
+        setAMDChoiceBoxes();
+        updateLabels();
+        usersCustomizedComputer.baseAMD.transformProcessorFields();
+
         mainScreen.setVisible(false);
+        SubmitScreen.setVisible(false);
         intelScreen.setVisible(false);
         AMDScreen.setVisible(true);
+
+        processorName =  usersCustomizedComputer.baseAMD.getProcessorName();
+        memoryName =  usersCustomizedComputer.baseAMD.getMemoryName();
+        storageSpaceName = usersCustomizedComputer.baseAMD.getStorageSpaceName();
+        graphicsName =  usersCustomizedComputer.baseAMD.getGraphicsName();
+        operatingSystemName = usersCustomizedComputer.baseAMD.getOperatingSystemName();
+        opticsName = usersCustomizedComputer.baseAMD.getOpticalDriveName();
+
+        processorPrice = usersCustomizedComputer.baseAMD.getProcessorPrice();
+        memoryPrice = usersCustomizedComputer.baseAMD.getMemoryPrice();
+        storageSpacePrice = usersCustomizedComputer.baseAMD.getStorageSpacePrice();
+        graphicsPrice = usersCustomizedComputer.baseAMD.getGraphicsPrice();
+        operatingSystemPrice = usersCustomizedComputer.baseAMD.getOperatingSystemPrice();
+        opticsPrice = usersCustomizedComputer.baseAMD.getOpticalDrivePrice();
+
+        basePackagePrice = 599.00;
+
+        updateLabels();
+
+        // CPU Choice
+        cpuChoiceBoxAMD.setOnAction((Event -> {
+            int cpuSelectedIndex = cpuChoiceBoxAMD.getSelectionModel().getSelectedIndex();
+            usersCustomizedComputer.amdConfiguration.setCpuState(cpuSelectedIndex);
+            usersCustomizedComputer.amdConfiguration.transformProcessorFields();
+
+            processorName = usersCustomizedComputer.amdConfiguration.getProcessorName();
+            processorPrice = usersCustomizedComputer.amdConfiguration.getProcessorPrice();
+            selectedCpuNameLabelAMD.setText(processorName);
+            selectedCpuPriceLabelAMD.setText(setFieldToString(processorPrice));
+            updateLabels();
+        }));
+
+        // Memory Choice
+        memoryChoiceBoxAMD.setOnAction((Event -> {
+            int memorySelectedIndex = memoryChoiceBoxAMD.getSelectionModel().getSelectedIndex();
+            usersCustomizedComputer.memoryConfiguration.setMemoryState(memorySelectedIndex);
+            usersCustomizedComputer.memoryConfiguration.setMemoryFields();
+
+            memoryName = usersCustomizedComputer.memoryConfiguration.getMemoryName();
+            memoryPrice = usersCustomizedComputer.memoryConfiguration.getMemoryPrice();
+            selectedMemoryNameLabelAMD.setText(memoryName);
+            selectedMemoryPriceLabelAMD.setText(setFieldToString(memoryPrice));
+            updateLabels();
+        }));
+
+        // Storage Choice
+        storageChoiceBoxAMD.setOnAction((Event -> {
+            int storageSelectedIndex = storageChoiceBoxAMD.getSelectionModel().getSelectedIndex();
+            usersCustomizedComputer.storageConfiguration.setStorageState(storageSelectedIndex);
+            usersCustomizedComputer.storageConfiguration.setStorageFields();
+
+            storageSpaceName = usersCustomizedComputer.storageConfiguration.getStorageSpaceName();
+            storageSpacePrice = usersCustomizedComputer.storageConfiguration.getStorageSpacePrice();
+            selectedStorageNameLabelAMD.setText(storageSpaceName);
+            selectedStoragePriceLabelAMD.setText(setFieldToString(storageSpacePrice));
+            updateLabels();
+        }));
+
+        // Optics Choice
+        opticsChoiceBoxAMD.setOnAction((Event -> {
+            int opticsSelectedIndex = opticsChoiceBoxAMD.getSelectionModel().getSelectedIndex();
+            usersCustomizedComputer.opticalDriveConfiguration.setOpticsState(opticsSelectedIndex);
+            usersCustomizedComputer.opticalDriveConfiguration.setOpticsFields();
+
+            opticsName = usersCustomizedComputer.opticalDriveConfiguration.getOpticalDriveName();
+            opticsPrice = usersCustomizedComputer.opticalDriveConfiguration.getOpticalDrivePrice();
+            selectedOpticsNameLabelAMD.setText(opticsName);
+            selectedOpticsPriceLabelAMD.setText(setFieldToString(opticsPrice));
+            updateLabels();
+        }));
+
+        // Graphics Choice
+        graphicsChoiceBoxAMD.setOnAction((Event -> {
+            int graphicsSelectedIndex = graphicsChoiceBoxAMD.getSelectionModel().getSelectedIndex();
+            usersCustomizedComputer.graphicsConfiguration.setGraphicsState(graphicsSelectedIndex);
+            usersCustomizedComputer.graphicsConfiguration.setGraphicsFields();
+
+            graphicsName = usersCustomizedComputer.graphicsConfiguration.getGraphicsName();
+            graphicsPrice = usersCustomizedComputer.graphicsConfiguration.getGraphicsPrice();
+            selectedGraphicsNameLabelAMD.setText(graphicsName);
+            selectedGraphicsPriceLabelAMD.setText(setFieldToString(graphicsPrice));
+            updateLabels();
+        }));
+
+        // Operating System
+        operatingSystemChoiceBoxAMD.setOnAction((Event -> {
+            int operatingSystemSelectedIndex = operatingSystemChoiceBoxAMD.getSelectionModel().getSelectedIndex();
+            usersCustomizedComputer.operatingSystemConfiguration.setOperatingSystemState(operatingSystemSelectedIndex);
+            usersCustomizedComputer.operatingSystemConfiguration.setOperatingSystemFields();
+
+            operatingSystemName = usersCustomizedComputer.operatingSystemConfiguration.getOperatingSystemName();
+            operatingSystemPrice = usersCustomizedComputer.operatingSystemConfiguration.getOperatingSystemPrice();
+            selectedOperatingSystemNameLabelAMD.setText(operatingSystemName);
+            selectedOperatingSystemPriceLabelAMD.setText(setFieldToString(operatingSystemPrice));
+            updateLabels();
+        }));
     }
 
     // Intel Screen
@@ -69,6 +169,7 @@ public class ConfiguratorController {
         updateLabels();
 
         mainScreen.setVisible(false);
+        SubmitScreen.setVisible(false);
         AMDScreen.setVisible(false);
         intelScreen.setVisible(true);
         usersCustomizedComputer.baseIntel.transformProcessorFields();
@@ -171,6 +272,64 @@ public class ConfiguratorController {
     }
 
     @FXML
+    public void submitOrderButtonClick() {
+        mainScreen.setVisible(false);
+        AMDScreen.setVisible(false);
+        intelScreen.setVisible(false);
+        SubmitScreen.setVisible(true);
+
+        double subtotalPrice = processorPrice + memoryPrice + storageSpacePrice + graphicsPrice + operatingSystemPrice +
+                opticsPrice + msStudentPackagePrice + msBusinessPackagePrice + accountingPackagePrice +
+                graphicsPackagePrice + basePackagePrice;
+
+        double salesTax = calculateSalesTax(subtotalPrice);
+        double shippingCost = calculateShipping(subtotalPrice);
+        double grandTotal = subtotalPrice + salesTax + shippingCost;
+
+        String formattedSubtotalPrice = decimalFormat.format(subtotalPrice);
+        String formattedSalesTax = decimalFormat.format(salesTax);
+        String formattedShippingCost = decimalFormat.format(shippingCost);
+        String formattedGrandTotal = decimalFormat.format(grandTotal);
+
+        cpuNameLabelSubmit.setText(processorName);
+        memoryNameLabelSubmit.setText(memoryName);
+        storageNameLabelSubmit.setText(storageSpaceName);
+        graphicsNameLabelSubmit.setText(graphicsName);
+        operatingSystemNameLabelSubmit.setText(operatingSystemName);
+        opticalDriveNameLabelSubmit.setText(opticsName);
+
+        cpuPriceLabelSubmit.setText(setFieldToString(processorPrice));
+        memoryPriceLabelSubmit.setText(setFieldToString(memoryPrice));
+        storagePriceLabelSubmit.setText(setFieldToString(storageSpacePrice));
+        graphicsPriceLabelSubmit.setText(setFieldToString(graphicsPrice));
+        operatingSystemPriceLabelSubmit.setText(setFieldToString(operatingSystemPrice));
+        opticalDrivePriceLabelSubmit.setText(setFieldToString(opticsPrice));
+        msStudentPriceLabelSubmit.setText(setFieldToString(msStudentPackagePrice));
+        msBusinessPriceLabelSubmit.setText(setFieldToString(msBusinessPackagePrice));
+        accountingPriceLabelSubmit.setText(setFieldToString(accountingPackagePrice));
+        graphicsPackagePriceLabelSubmit.setText(setFieldToString(graphicsPackagePrice));
+
+        audioNameLabelSubmit.setText(AUDIO_NAME);
+        speakersNameLabelSubmit.setText(SPEAKERS_NAME);
+        keyboardNameLabelSubmit.setText(KEYBOARD_NAME);
+        mouseNameLabelSubmit.setText(MOUSE_NAME);
+
+        basePackagePriceSubmit.setText(setFieldToString(basePackagePrice));
+        subTotalPriceSubmit.setText(formattedSubtotalPrice);
+        salesTaxTotalSubmit.setText(formattedSalesTax);
+        shippingTotalSubmit.setText(formattedShippingCost);
+        grandTotalPriceSubmit.setText(formattedGrandTotal);
+    }
+
+    public double calculateSalesTax(double price) {
+        return price * 0.078;
+    }
+
+    public double calculateShipping (double ship) {
+        return ship * 0.025;
+    }
+
+    @FXML
     public void msStudentIsSelected() {
         boolean msStudentPackage = msStudentCheckbox.isSelected();
         if (msStudentPackage) {
@@ -185,6 +344,28 @@ public class ConfiguratorController {
             selectedMsStudentPriceLabel.setText(setFieldToString(0.0));
         }
         updateLabels();
+    }
+
+    @FXML
+    public void msStudentIsSelectedAMD() {
+        boolean msStudentPackage = msStudentCheckboxAMD.isSelected();
+        if (msStudentPackage) {
+            msStudentPackageName = usersCustomizedComputer.additionalPackages.getMsStudentPackageName();
+            msStudentPackagePrice = usersCustomizedComputer.additionalPackages.getMsStudentPackagePrice();
+            selectedMsStudentPriceLabelAMD.setText(setFieldToString(msStudentPackagePrice));
+        } else {
+            msStudentPackageName = DECLINED_TEXT;
+            msStudentPackagePrice = 0.0;
+            msStudentNameLabel.setText(DECLINED_TEXT);
+            msStudentPriceLabel.setText(setFieldToString(0.0));
+            selectedMsStudentPriceLabelAMD.setText(setFieldToString(0.0));
+        }
+        updateAdditionalLabels( msStudentCheckboxAMD, msStudentNameLabel, msStudentPriceLabel, msStudentPackagePrice,
+                msBusinessCheckboxAMD, msBusinessNameLabel, msBusinessPriceLabel, msBusinessPackagePrice);
+        double subtotalPrice = processorPrice + memoryPrice + storageSpacePrice + graphicsPrice + operatingSystemPrice +
+                opticsPrice + msStudentPackagePrice + msBusinessPackagePrice + accountingPackagePrice +
+                graphicsPackagePrice + basePackagePrice;
+        subTotalPriceLabel.setText(setFieldToString(subtotalPrice));
     }
 
     @FXML
@@ -205,6 +386,28 @@ public class ConfiguratorController {
     }
 
     @FXML
+    public void msBusinessIsSelectedAMD() {
+        boolean msBusinessPackage = msBusinessCheckboxAMD.isSelected();
+        if (msBusinessPackage) {
+            msBusinessPackageName = usersCustomizedComputer.additionalPackages.getMsBusinessPackageName();
+            msBusinessPackagePrice =  usersCustomizedComputer.additionalPackages.getMsBusinessPackagePrice();
+            selectedMsBusinessPriceLabelAMD.setText(setFieldToString(msBusinessPackagePrice));
+        } else {
+            msBusinessPackageName = DECLINED_TEXT;
+            msBusinessPackagePrice = 0.0;
+            msBusinessNameLabel.setText(DECLINED_TEXT);
+            msBusinessPriceLabel.setText(setFieldToString(0.0));
+            selectedMsBusinessPriceLabelAMD.setText(setFieldToString(0.0));
+        }
+        updateAdditionalLabels( msStudentCheckboxAMD, msStudentNameLabel, msStudentPriceLabel, msStudentPackagePrice,
+                msBusinessCheckboxAMD, msBusinessNameLabel, msBusinessPriceLabel, msBusinessPackagePrice);
+        double subtotalPrice = processorPrice + memoryPrice + storageSpacePrice + graphicsPrice + operatingSystemPrice +
+                opticsPrice + msStudentPackagePrice + msBusinessPackagePrice + accountingPackagePrice +
+                graphicsPackagePrice + basePackagePrice;
+        subTotalPriceLabel.setText(setFieldToString(subtotalPrice));
+    }
+
+    @FXML
     public void accountingIsSelected() {
         boolean accountingPackage = accountingCheckbox.isSelected();
         if (accountingPackage) {
@@ -222,6 +425,29 @@ public class ConfiguratorController {
     }
 
     @FXML
+    public void accountingIsSelectedAMD() {
+        boolean accountingPackage = accountingCheckboxAMD.isSelected();
+        if (accountingPackage) {
+            accountingPackageName = usersCustomizedComputer.additionalPackages.getAccountingPackageName();
+            accountingPackagePrice = usersCustomizedComputer.additionalPackages.getAccountingPackagePrice();
+            selectedAccountingPriceLabelAMD.setText(setFieldToString(accountingPackagePrice));
+        } else {
+            accountingPackageName = DECLINED_TEXT;
+            accountingPackagePrice = 0.0;
+            accountingNameLabel.setText(DECLINED_TEXT);
+            accountingPriceLabel.setText(setFieldToString(0.0));
+            selectedAccountingPriceLabelAMD.setText(setFieldToString(0.0));
+        }
+        updateAdditionalLabels( accountingCheckboxAMD, accountingNameLabel, accountingPriceLabel, accountingPackagePrice,
+                graphicsPackageCheckboxAMD, graphicsPackageNameLabel, graphicsPackagePriceLabel,
+                graphicsPackagePrice);
+        double subtotalPrice = processorPrice + memoryPrice + storageSpacePrice + graphicsPrice + operatingSystemPrice +
+                opticsPrice + msStudentPackagePrice + msBusinessPackagePrice + accountingPackagePrice +
+                graphicsPackagePrice + basePackagePrice;
+        subTotalPriceLabel.setText(setFieldToString(subtotalPrice));
+    }
+
+    @FXML
     public void graphicsPackageIsSelected() {
         boolean graphicsPackage = graphicsPackageCheckbox.isSelected();
         if (graphicsPackage) {
@@ -236,6 +462,29 @@ public class ConfiguratorController {
             selectedGraphicsPackagePriceLabel.setText(setFieldToString(0.0));
         }
         updateLabels();
+    }
+
+    @FXML
+    public void graphicsPackageIsSelectedAMD() {
+        boolean graphicsPackage = graphicsPackageCheckboxAMD.isSelected();
+        if (graphicsPackage) {
+            graphicsPackageName = usersCustomizedComputer.additionalPackages.getGraphicsPackageName();
+            graphicsPackagePrice =  usersCustomizedComputer.additionalPackages.getGraphicsPackagePrice();
+            selectedGraphicsPackagePriceLabelAMD.setText(setFieldToString(graphicsPackagePrice));
+        } else {
+            graphicsPackageName = DECLINED_TEXT;
+            graphicsPackagePrice = 0.0;
+            graphicsPackageNameLabel.setText(DECLINED_TEXT);
+            graphicsPackagePriceLabel.setText(setFieldToString(0.0));
+            selectedGraphicsPackagePriceLabelAMD.setText(setFieldToString(0.0));
+        }
+        updateAdditionalLabels( accountingCheckboxAMD, accountingNameLabel, accountingPriceLabel, accountingPackagePrice,
+                graphicsPackageCheckboxAMD, graphicsPackageNameLabel, graphicsPackagePriceLabel,
+                graphicsPackagePrice);
+        double subtotalPrice = processorPrice + memoryPrice + storageSpacePrice + graphicsPrice + operatingSystemPrice +
+                opticsPrice + msStudentPackagePrice + msBusinessPackagePrice + accountingPackagePrice +
+                graphicsPackagePrice + basePackagePrice;
+        subTotalPriceLabel.setText(setFieldToString(subtotalPrice));
     }
 
     @FXML
@@ -270,6 +519,55 @@ public class ConfiguratorController {
                 opticsPrice + msStudentPackagePrice + msBusinessPackagePrice + accountingPackagePrice +
                 graphicsPackagePrice + basePackagePrice;
         subTotalPriceLabel.setText(setFieldToString(subtotalPrice));
+    }
+
+    public void updateAdditionalLabels(CheckBox accountingCheckbox, Label accountingNameLabel, Label accountingPriceLabel,
+                                       double accountingPackagePrice, CheckBox graphicsPackageCheckbox,
+                                       Label graphicsPackageNameLabel, Label graphicsPackagePriceLabel,
+                                       double graphicsPackagePrice) {
+        if (accountingCheckbox.isSelected()) {
+            accountingNameLabel.setText(ACCEPTED_TEXT);
+            accountingPriceLabel.setText(setFieldToString(accountingPackagePrice));
+        } else {
+            accountingNameLabel.setText(DECLINED_TEXT);
+            accountingPriceLabel.setText(setFieldToString(0.0));
+        }
+        if (graphicsPackageCheckbox.isSelected()) {
+            graphicsPackageNameLabel.setText(ACCEPTED_TEXT);
+            graphicsPackagePriceLabel.setText(setFieldToString(graphicsPackagePrice));
+        } else {
+            graphicsPackageNameLabel.setText(DECLINED_TEXT);
+            graphicsPackagePriceLabel.setText(setFieldToString(0.0));
+        }
+    }
+
+    public void setAMDChoiceBoxes() {
+        cpuChoiceBoxAMD.setItems(FXCollections.observableArrayList("AMD FX-2100     + $0.0",
+                "AMD FX-8350     + $25.00",
+                "AMD FX-9590     + $90.00",
+                "AMD FX-4100     + $187.00",
+                "AMD FX-4300     + $280.00"));
+
+        memoryChoiceBoxAMD.setItems(FXCollections.observableArrayList("4GB DDR3     + $0.0",
+                "6GB DDR3     + $28.00",
+                "8GB DDR3     + $58.00",
+                "12GB DDR3     + $108.00",
+                "16GB DDR3     + $176.00"));
+        storageChoiceBoxAMD.setItems(FXCollections.observableArrayList("125GB 7.2K RPM SATA    + $0.0",
+                "250GB 7.2K RPM SATA     + $27.00",
+                "500GB 7.2K RPM SATA   + $50.00",
+                "1TB 7.2K RPM SATA    + $105.00"));
+        opticsChoiceBoxAMD.setItems(FXCollections.observableArrayList("CD-Rom Drive    + $0.0",
+                "DVD Drive     + $17.00",
+                "Combo DVD/CDRW Drive   + $40.00",
+                "DVD and CDRW Drive    + $79.00"));
+        graphicsChoiceBoxAMD.setItems(FXCollections.observableArrayList("Integrated 3D Graphics    + $0.0",
+                "NVIDIA GeForce G310 512MB DDR3     + $80.00",
+                "NVIDIA GeForce GT620 1GB DDR3   + $169.00",
+                "NVIDIA GeForce GT640 1GB GDDR5    + $490.00"));
+        operatingSystemChoiceBoxAMD.setItems(FXCollections.observableArrayList("Windows 8.1    + $0.0",
+                "Windows 8.1 Pro     + $59.00",
+                "Linux   - $89.00"));
     }
 
     public void setIntelChoiceBoxes() {
@@ -323,8 +621,44 @@ public class ConfiguratorController {
         graphicsPackagePriceLabel.setText(setFieldToString(0.0));
     }
 
+    public void resetAMDScreen() {
+        resetNames();
+        resetPrices();
+
+        cpuChoiceBoxAMD.setValue("AMD FX-2100     + $0.0");
+
+        memoryChoiceBoxAMD.setValue("4GB DDR3     + $0.0");
+        storageChoiceBoxAMD.setValue("125GB 7.2K RPM SATA    + $0.0");
+        opticsChoiceBoxAMD.setValue("CD-Rom Drive    + $0.0");
+        graphicsChoiceBoxAMD.setValue("Integrated 3D Graphics    + $0.0");
+        operatingSystemChoiceBoxAMD.setValue("Windows 8.1    + $0.0");
+        selectedCpuNameLabelAMD.setText("CPU Name");
+        selectedMemoryNameLabelAMD.setText("Memory Name");
+        selectedStorageNameLabelAMD.setText("Storage Name");
+        selectedOpticsNameLabelAMD.setText("Optics Name");
+        selectedGraphicsNameLabelAMD.setText("Graphics Name");
+        selectedOperatingSystemNameLabelAMD.setText("Operating System Name");
+
+        msStudentCheckboxAMD.setSelected(false);
+        msBusinessCheckboxAMD.setSelected(false);
+        accountingCheckboxAMD.setSelected(false);
+        graphicsPackageCheckboxAMD.setSelected(false);
+
+        selectedCpuPriceLabelAMD.setText(setFieldToString(0.0));
+        selectedMemoryPriceLabelAMD.setText(setFieldToString(0.0));
+        selectedStoragePriceLabelAMD.setText(setFieldToString(0.0));
+        selectedOpticsPriceLabelAMD.setText(setFieldToString(0.0));
+        selectedGraphicsPriceLabelAMD.setText(setFieldToString(0.0));
+        selectedOperatingSystemPriceLabelAMD.setText(setFieldToString(0.0));
+        selectedMsStudentPriceLabelAMD.setText(setFieldToString(0.0));
+    }
+
     public void resetIntelScreen() {
+        resetNames();
+        resetPrices();
+
         cpuChoiceBox.setValue("Intel Celeron G1610 2.3GHz     + $0.0");
+
         memoryChoiceBox.setValue("4GB DDR3     + $0.0");
         storageChoiceBox.setValue("125GB 7.2K RPM SATA    + $0.0");
         opticsChoiceBox.setValue("CD-Rom Drive    + $0.0");
@@ -342,18 +676,6 @@ public class ConfiguratorController {
         accountingCheckbox.setSelected(false);
         graphicsPackageCheckbox.setSelected(false);
 
-        processorPrice = 0.0;
-        memoryPrice = 0.0;
-        storageSpacePrice = 0.0;
-        graphicsPrice = 0.0;
-        operatingSystemPrice = 0.0;
-        opticsPrice = 0.0;
-        msStudentPackagePrice = 0.0;
-        msBusinessPackagePrice = 0.0;
-        accountingPackagePrice = 0.0;
-        graphicsPackagePrice = 0.0;
-        basePackagePrice = 0.0;
-
         selectedCpuPriceLabel.setText(setFieldToString(0.0));
         selectedMemoryPriceLabel.setText(setFieldToString(0.0));
         selectedStoragePriceLabel.setText(setFieldToString(0.0));
@@ -366,24 +688,27 @@ public class ConfiguratorController {
         graphicsPackagePriceLabel.setText(setFieldToString(0.0));
     }
 
-    public void updateAdditionalLabels(CheckBox accountingCheckbox, Label accountingNameLabel, Label accountingPriceLabel,
-                                       double accountingPackagePrice, CheckBox graphicsPackageCheckbox,
-                                       Label graphicsPackageNameLabel, Label graphicsPackagePriceLabel,
-                                       double graphicsPackagePrice) {
-        if (accountingCheckbox.isSelected()) {
-            accountingNameLabel.setText(ACCEPTED_TEXT);
-            accountingPriceLabel.setText(setFieldToString(accountingPackagePrice));
-        } else {
-            accountingNameLabel.setText(DECLINED_TEXT);
-            accountingPriceLabel.setText(setFieldToString(0.0));
-        }
-        if (graphicsPackageCheckbox.isSelected()) {
-            graphicsPackageNameLabel.setText(ACCEPTED_TEXT);
-            graphicsPackagePriceLabel.setText(setFieldToString(graphicsPackagePrice));
-        } else {
-            graphicsPackageNameLabel.setText(DECLINED_TEXT);
-            graphicsPackagePriceLabel.setText(setFieldToString(0.0));
-        }
+    public void resetNames() {
+        processorName = "";
+        memoryName = "";
+        storageSpaceName = "";
+        graphicsName = "";
+        operatingSystemName = "";
+        opticsName = "";
+    }
+
+    public void resetPrices() {
+        processorPrice = 0.0;
+        memoryPrice = 0.0;
+        storageSpacePrice = 0.0;
+        graphicsPrice = 0.0;
+        operatingSystemPrice = 0.0;
+        opticsPrice = 0.0;
+        msStudentPackagePrice = 0.0;
+        msBusinessPackagePrice = 0.0;
+        accountingPackagePrice = 0.0;
+        graphicsPackagePrice = 0.0;
+        basePackagePrice = 0.0;
     }
 
     /* Fields */
@@ -424,9 +749,99 @@ public class ConfiguratorController {
     @FXML
     private AnchorPane mainScreen;
 
+    // Submit Screen
+    @FXML
+    private AnchorPane SubmitScreen;
+    @FXML
+    private Label cpuNameLabelSubmit;
+    @FXML
+    private Label memoryNameLabelSubmit;
+    @FXML
+    private Label storageNameLabelSubmit;
+    @FXML
+    private Label graphicsNameLabelSubmit;
+    @FXML
+    private Label operatingSystemNameLabelSubmit;
+    @FXML
+    private Label opticalDriveNameLabelSubmit;
+    @FXML
+    private Label cpuPriceLabelSubmit;
+    @FXML
+    private Label memoryPriceLabelSubmit;
+    @FXML
+    private Label storagePriceLabelSubmit;
+    @FXML
+    private Label graphicsPriceLabelSubmit;
+    @FXML
+    private Label operatingSystemPriceLabelSubmit;
+    @FXML
+    private Label opticalDrivePriceLabelSubmit;
+    @FXML
+    private Label msStudentPriceLabelSubmit;
+    @FXML
+    private Label msBusinessPriceLabelSubmit;
+    @FXML
+    private Label accountingPriceLabelSubmit;
+    @FXML
+    private Label graphicsPackagePriceLabelSubmit;
+    @FXML
+    private Label audioNameLabelSubmit;
+    @FXML
+    private Label speakersNameLabelSubmit;
+    @FXML
+    private Label keyboardNameLabelSubmit;
+    @FXML
+    private Label mouseNameLabelSubmit;
+    @FXML
+    private Label basePackagePriceSubmit;
+    @FXML
+    private Label subTotalPriceSubmit;
+    @FXML
+    private Label salesTaxTotalSubmit;
+    @FXML
+    private Label shippingTotalSubmit;
+    @FXML
+    private Label grandTotalPriceSubmit;
+
     // AMD Screen
     @FXML
     private AnchorPane AMDScreen;
+    @FXML
+    private ChoiceBox<Object> cpuChoiceBoxAMD;
+    @FXML
+    private Label selectedCpuNameLabelAMD;
+    @FXML
+    private Label selectedCpuPriceLabelAMD;
+    @FXML
+    private ChoiceBox<Object> memoryChoiceBoxAMD;
+    @FXML
+    private Label selectedMemoryNameLabelAMD;
+    @FXML
+    private Label selectedMemoryPriceLabelAMD;
+    @FXML
+    private ChoiceBox<Object> storageChoiceBoxAMD;
+    @FXML
+    private Label selectedStorageNameLabelAMD;
+    @FXML
+    private Label selectedStoragePriceLabelAMD;
+    @FXML
+    private ChoiceBox<Object> opticsChoiceBoxAMD;
+    @FXML
+    private Label selectedOpticsNameLabelAMD;
+    @FXML
+    private Label selectedOpticsPriceLabelAMD;
+    @FXML
+    private ChoiceBox<Object> graphicsChoiceBoxAMD;
+    @FXML
+    private Label selectedGraphicsNameLabelAMD;
+    @FXML
+    private Label selectedGraphicsPriceLabelAMD;
+    @FXML
+    private ChoiceBox<Object> operatingSystemChoiceBoxAMD;
+    @FXML
+    private Label selectedOperatingSystemNameLabelAMD;
+    @FXML
+    private Label selectedOperatingSystemPriceLabelAMD;
 
     // Intel Screen
     @FXML
@@ -437,6 +852,8 @@ public class ConfiguratorController {
     private Label selectedCpuNameLabel;
     @FXML
     private Label selectedCpuPriceLabel;
+
+    // Both Screens
     @FXML
     private ChoiceBox<Object> memoryChoiceBox;
     @FXML
@@ -467,6 +884,8 @@ public class ConfiguratorController {
     private Label selectedOperatingSystemNameLabel;
     @FXML
     private Label selectedOperatingSystemPriceLabel;
+
+    // Additional Software
     @FXML
     private CheckBox msStudentCheckbox;
     @FXML
@@ -483,6 +902,22 @@ public class ConfiguratorController {
     private CheckBox graphicsPackageCheckbox;
     @FXML
     private Label selectedGraphicsPackagePriceLabel;
+    @FXML
+    private CheckBox msStudentCheckboxAMD;
+    @FXML
+    private Label selectedMsStudentPriceLabelAMD;
+    @FXML
+    private CheckBox msBusinessCheckboxAMD;
+    @FXML
+    private Label selectedMsBusinessPriceLabelAMD;
+    @FXML
+    private CheckBox accountingCheckboxAMD;
+    @FXML
+    private Label selectedAccountingPriceLabelAMD;
+    @FXML
+    private CheckBox graphicsPackageCheckboxAMD;
+    @FXML
+    private Label selectedGraphicsPackagePriceLabelAMD;
 
     // Side Panel
     @FXML

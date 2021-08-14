@@ -19,7 +19,7 @@
    <children>
       <HBox fx:id="ApplicationRoot" prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <VBox id="LeftSideBar" fx:id="SideBar" prefHeight="720.0" prefWidth="306.0" style="-fx-background-color: #00263C;" stylesheets="@CSS/styles.css">
+            <VBox id="LeftSideBar" fx:id="SideBar" prefHeight="720.0" prefWidth="306.0" style="-fx-background-color: #1D3354;" stylesheets="@CSS/styles.css">
                <children>
                   <HBox fx:id="CompanyBanner" prefHeight="112.0" prefWidth="320.0">
                      <children>
@@ -35,17 +35,17 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Button fx:id="MainScreenButton" alignment="CENTER" mnemonicParsing="false" onAction="#OnMainScreenButtonClick" prefHeight="77.0" prefWidth="320.0" style="-fx-background-color: #003459;" text="Main Screen" textAlignment="CENTER" textFill="WHITESMOKE">
+                  <Button fx:id="MainScreenButton" alignment="CENTER" mnemonicParsing="false" onAction="#OnMainScreenButtonClick" prefHeight="77.0" prefWidth="320.0" style="-fx-background-color: #1D3354;" text="Main Screen (Resets Progress)" textAlignment="CENTER" textFill="WHITESMOKE">
+                     <font>
+                        <Font name="Modern No. 20" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="IntelScreenButton" alignment="CENTER" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#OnIntelScreenButtonClick" prefHeight="77.0" prefWidth="320.0" style="-fx-background-color: #9ED8DB;" text="Intel Computer" textAlignment="CENTER" textFill="WHITESMOKE">
                      <font>
                         <Font name="Modern No. 20" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="IntelScreenButton" alignment="CENTER" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#OnIntelScreenButtonClick" prefHeight="77.0" prefWidth="320.0" style="-fx-background-color: #005980;" text="Intel Computer" textAlignment="CENTER" textFill="WHITESMOKE">
-                     <font>
-                        <Font name="Modern No. 20" size="24.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="AMDScreenButton" alignment="CENTER" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#OnAMDScreenButtonClick" prefHeight="77.0" prefWidth="320.0" style="-fx-background-color: #003459;" text="AMD Computer" textAlignment="CENTER" textFill="WHITESMOKE">
+                  <Button fx:id="AMDScreenButton" alignment="CENTER" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#OnAMDScreenButtonClick" prefHeight="77.0" prefWidth="320.0" style="-fx-background-color: #467599;" text="AMD Computer" textAlignment="CENTER" textFill="WHITESMOKE">
                      <font>
                         <Font name="Modern No. 20" size="24.0" />
                      </font>
@@ -155,7 +155,7 @@
                               <Label fx:id="subTotalPriceLabel" alignment="CENTER" prefHeight="24.0" prefWidth="117.0" text="0.0" textFill="#00ff22" />
                            </children>
                         </HBox>
-                        <Button fx:id="submitOrderButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="310.0" style="-fx-background-color: #00A8E8;" text="Submit Order" textFill="WHITESMOKE">
+                        <Button fx:id="submitOrderButton" mnemonicParsing="false" onAction="#submitOrderButtonClick" prefHeight="25.0" prefWidth="310.0" style="-fx-background-color: #FFB627;" text="Submit Order" textFill="#d64045">
                            <font>
                               <Font name="Monospaced Bold" size="12.0" />
                            </font>
@@ -543,7 +543,745 @@
                         </VBox>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="AMDScreen" prefHeight="721.0" prefWidth="976.0" visible="false" />
+                  <AnchorPane fx:id="AMDScreen" prefHeight="721.0" prefWidth="976.0" style="-fx-background-color: #00263C;" visible="false">
+                     <children>
+                        <Pane prefHeight="59.0" prefWidth="976.0" style="-fx-background-color: #00171F;">
+                           <children>
+                              <ImageView fitHeight="85.0" fitWidth="168.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/amd-logo.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITESMOKE" layoutX="224.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customize your AMD Computer -- (+ $ Prices are added to Base PC Price)" textAlignment="CENTER" wrappingWidth="529.0">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <VBox layoutY="56.0" prefHeight="664.0" prefWidth="976.0">
+                           <children>
+                              <HBox prefHeight="226.0" prefWidth="976.0">
+                                 <children>
+                                    <VBox prefHeight="226.0" prefWidth="325.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Processor" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox fx:id="cpuChoiceBoxAMD" prefHeight="48.0" prefWidth="325.0">
+                                             <tooltip>
+                                                <Tooltip text="Select a CPU choice from the dropdown to upgrade or downgrade your customized computer." />
+                                             </tooltip>
+                                          </ChoiceBox>
+                                          <Label fx:id="selectedCpuNameLabelAMD" alignment="CENTER" prefHeight="70.0" prefWidth="325.0" text="CPU Name" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="70.0" prefWidth="325.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="72.0" prefWidth="193.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedCpuPriceLabelAMD" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="221.0" prefWidth="327.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Random Access Memory" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox fx:id="memoryChoiceBoxAMD" prefHeight="48.0" prefWidth="325.0">
+                                             <tooltip>
+                                                <Tooltip text="Select a memory choice from the dropdown to upgrade or downgrade your customized computer." />
+                                             </tooltip>
+                                          </ChoiceBox>
+                                          <Label fx:id="selectedMemoryNameLabelAMD" alignment="CENTER" prefHeight="70.0" prefWidth="325.0" text="Memory Name" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="70.0" prefWidth="325.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="72.0" prefWidth="193.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedMemoryPriceLabelAMD" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="221.0" prefWidth="327.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Storage Space" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox fx:id="storageChoiceBoxAMD" prefHeight="48.0" prefWidth="325.0">
+                                             <tooltip>
+                                                <Tooltip text="Select a storage choice from the dropdown to upgrade or downgrade your customized computer." />
+                                             </tooltip>
+                                          </ChoiceBox>
+                                          <Label fx:id="selectedStorageNameLabelAMD" alignment="CENTER" prefHeight="70.0" prefWidth="325.0" text="Storage Name" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="70.0" prefWidth="325.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="72.0" prefWidth="193.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedStoragePriceLabelAMD" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="253.0" prefWidth="976.0">
+                                 <children>
+                                    <VBox prefHeight="221.0" prefWidth="327.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Optical Drive" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox fx:id="opticsChoiceBoxAMD" prefHeight="48.0" prefWidth="325.0">
+                                             <tooltip>
+                                                <Tooltip text="Select a optical drive choice from the dropdown to upgrade or downgrade your customized computer." />
+                                             </tooltip>
+                                          </ChoiceBox>
+                                          <Label fx:id="selectedOpticsNameLabelAMD" alignment="CENTER" prefHeight="70.0" prefWidth="325.0" text="Optics Name" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="70.0" prefWidth="325.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="72.0" prefWidth="193.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedOpticsPriceLabelAMD" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Graphics Card" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox fx:id="graphicsChoiceBoxAMD" prefHeight="48.0" prefWidth="325.0">
+                                             <tooltip>
+                                                <Tooltip text="Select a graphics card choice from the dropdown to upgrade or downgrade your customized computer." />
+                                             </tooltip>
+                                          </ChoiceBox>
+                                          <Label fx:id="selectedGraphicsNameLabelAMD" alignment="CENTER" prefHeight="70.0" prefWidth="325.0" text="Graphics Name" textFill="WHITESMOKE" wrapText="true">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="70.0" prefWidth="325.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="72.0" prefWidth="193.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedGraphicsPriceLabelAMD" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="337.0" layoutY="10.0" prefHeight="221.0" prefWidth="327.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="53.0" prefWidth="325.0" text="Operating System" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox fx:id="operatingSystemChoiceBoxAMD" prefHeight="48.0" prefWidth="325.0">
+                                             <tooltip>
+                                                <Tooltip text="Select a operating system choice from the dropdown to upgrade or downgrade your customized computer." />
+                                             </tooltip>
+                                          </ChoiceBox>
+                                          <Label fx:id="selectedOperatingSystemNameLabelAMD" alignment="CENTER" prefHeight="70.0" prefWidth="325.0" text="Operating System Name" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="70.0" prefWidth="325.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="72.0" prefWidth="193.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedOperatingSystemPriceLabelAMD" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="244.0" prefWidth="976.0">
+                                 <children>
+                                    <VBox fx:id="additionalFeature" prefHeight="216.0" prefWidth="245.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="244.0" text="Microsoft Office Home &amp; Student 2013" textFill="WHITESMOKE" underline="true" wrapText="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <CheckBox fx:id="msStudentCheckboxAMD" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#msStudentIsSelectedAMD" prefHeight="86.0" prefWidth="245.0" stylesheets="@CSS/styles.css" text="Add to Order (+$139)" textFill="WHITESMOKE">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <tooltip>
+                                                <Tooltip text="Add Microsoft Office Home and Student suite to your order. Microsoft Word, Powerpoint, Excel, and more." />
+                                             </tooltip>
+                                          </CheckBox>
+                                          <HBox prefHeight="74.0" prefWidth="245.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="76.0" prefWidth="132.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedMsStudentPriceLabelAMD" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="additionalFeature2" layoutX="10.0" layoutY="10.0" prefHeight="216.0" prefWidth="245.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="244.0" text="Microsoft Office Home &amp; Business 2013" textFill="WHITESMOKE" underline="true" wrapText="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <CheckBox fx:id="msBusinessCheckboxAMD" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#msBusinessIsSelectedAMD" prefHeight="86.0" prefWidth="245.0" stylesheets="@CSS/styles.css" text="Add to order (+$219)" textFill="WHITESMOKE">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <tooltip>
+                                                <Tooltip text="Add Microsoft Office Home and Business package to your order. Microsoft Word, Powerpoint, Excel, and many more Microsoft Products" />
+                                             </tooltip>
+                                          </CheckBox>
+                                          <HBox prefHeight="74.0" prefWidth="245.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="76.0" prefWidth="132.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedMsBusinessPriceLabelAMD" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="additionalFeature3" layoutX="255.0" layoutY="10.0" prefHeight="216.0" prefWidth="245.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="244.0" text="Accounting Package" textFill="WHITESMOKE" underline="true" wrapText="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <CheckBox fx:id="accountingCheckboxAMD" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#accountingIsSelectedAMD" prefHeight="86.0" prefWidth="245.0" stylesheets="@CSS/styles.css" text="Add to order (+$399)" textFill="WHITESMOKE">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <tooltip>
+                                                <Tooltip text="Add an accounting software suite package to your computer to assist you with all of your accounting needs." />
+                                             </tooltip>
+                                          </CheckBox>
+                                          <HBox prefHeight="74.0" prefWidth="245.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="76.0" prefWidth="132.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedAccountingPriceLabelAMD" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="additionalFeature4" layoutX="500.0" layoutY="10.0" prefHeight="216.0" prefWidth="245.0" styleClass="additional-features" stylesheets="@CSS/styles.css">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="244.0" text="Graphics Package" textFill="WHITESMOKE" underline="true" wrapText="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <CheckBox fx:id="graphicsPackageCheckboxAMD" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#graphicsPackageIsSelectedAMD" prefHeight="86.0" prefWidth="245.0" stylesheets="@CSS/styles.css" text="Add to order (+$499)" textFill="WHITESMOKE">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <tooltip>
+                                                <Tooltip text="Add a graphics editing software package to your computer to assist in all of your graphic design projects." />
+                                             </tooltip>
+                                          </CheckBox>
+                                          <HBox prefHeight="74.0" prefWidth="245.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="76.0" prefWidth="132.0" text="Added Cost:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="Monospaced Italic" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="selectedGraphicsPackagePriceLabelAMD" alignment="CENTER" prefHeight="84.0" prefWidth="134.0" text="0.0" textFill="#00ff11">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+                  <AnchorPane fx:id="SubmitScreen" prefHeight="722.0" prefWidth="980.0" visible="false">
+                     <children>
+                        <Pane prefHeight="59.0" prefWidth="980.0" style="-fx-background-color: #FF9505;">
+                           <children>
+                              <Text fill="WHITESMOKE" layoutX="224.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Submitted!" textAlignment="CENTER" wrappingWidth="529.0">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="24.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <VBox layoutY="58.0" prefHeight="664.0" prefWidth="980.0" style="-fx-background-color: #1D3354;">
+                           <children>
+                              <HBox prefHeight="467.0" prefWidth="980.0">
+                                 <children>
+                                    <VBox prefHeight="466.0" prefWidth="338.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="40.0" prefWidth="332.0" text="CPU:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="cpuNameLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="327.0" text="CPU NAME" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="46.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="46.0" prefWidth="178.0" text="CPU Price:" textAlignment="CENTER" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="cpuPriceLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="150.0" text="0.0" textAlignment="CENTER" textFill="#55ff00">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="332.0" text="Memory:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="memoryNameLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="50.0" prefHeight="46.0" prefWidth="327.0" text="MEMORY NAME" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox layoutX="10.0" layoutY="96.0" prefHeight="46.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="46.0" prefWidth="178.0" text="Memory Price:" textAlignment="CENTER" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="memoryPriceLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="150.0" text="0.0" textAlignment="CENTER" textFill="#55ff00">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label alignment="CENTER" layoutX="10.0" layoutY="142.0" prefHeight="40.0" prefWidth="332.0" text="Storage:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="storageNameLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="182.0" prefHeight="46.0" prefWidth="327.0" text="STORAGE NAME" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox layoutX="10.0" layoutY="228.0" prefHeight="46.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="46.0" prefWidth="178.0" text="Storage Price:" textAlignment="CENTER" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="storagePriceLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="150.0" text="0.0" textAlignment="CENTER" textFill="#55ff00">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label alignment="CENTER" layoutX="10.0" layoutY="274.0" prefHeight="40.0" prefWidth="332.0" text="Graphics:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="graphicsNameLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="314.0" prefHeight="46.0" prefWidth="327.0" text="STORAGE NAME" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox layoutX="10.0" layoutY="360.0" prefHeight="46.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="46.0" prefWidth="178.0" text="Graphics Price:" textAlignment="CENTER" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="graphicsPriceLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="150.0" text="0.0" textAlignment="CENTER" textFill="#55ff00">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="466.0" prefWidth="338.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="40.0" prefWidth="332.0" text="Operating System:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="operatingSystemNameLabelSubmit" alignment="CENTER" prefHeight="46.0" prefWidth="327.0" text="OPERATING SYSTEM" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="46.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="46.0" prefWidth="178.0" text="Operating System Price:" textAlignment="CENTER" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="operatingSystemPriceLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="150.0" text="0.0" textAlignment="CENTER" textFill="#55ff00">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="332.0" text="Optical Drive:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="opticalDriveNameLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="50.0" prefHeight="46.0" prefWidth="327.0" text="OPTICAL DRIVE" textFill="WHITESMOKE">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox layoutX="10.0" layoutY="96.0" prefHeight="46.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="46.0" prefWidth="178.0" text="Optical Drive Price:" textAlignment="CENTER" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="opticalDrivePriceLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="150.0" text="0.0" textAlignment="CENTER" textFill="#55ff00">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label alignment="CENTER" layoutX="10.0" layoutY="142.0" prefHeight="40.0" prefWidth="332.0" text="Microsoft Student:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox layoutX="10.0" layoutY="228.0" prefHeight="46.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="46.0" prefWidth="178.0" text="MS Student Price:" textAlignment="CENTER" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="msStudentPriceLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="150.0" text="0.0" textAlignment="CENTER" textFill="#55ff00">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label alignment="CENTER" layoutX="10.0" layoutY="274.0" prefHeight="40.0" prefWidth="332.0" text="Microsoft Business:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox layoutX="10.0" layoutY="314.0" prefHeight="46.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="46.0" prefWidth="178.0" text="MS Business Price:" textAlignment="CENTER" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="msBusinessPriceLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="150.0" text="0.0" textAlignment="CENTER" textFill="#55ff00">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label alignment="CENTER" layoutX="10.0" layoutY="360.0" prefHeight="40.0" prefWidth="332.0" text="Accounting Package:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox layoutX="10.0" layoutY="400.0" prefHeight="46.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="46.0" prefWidth="178.0" text="Accounting Package Price:" textAlignment="CENTER" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="accountingPriceLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="150.0" text="0.0" textAlignment="CENTER" textFill="#55ff00">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label alignment="CENTER" layoutX="10.0" layoutY="398.0" prefHeight="40.0" prefWidth="332.0" text="Graphics Package:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox layoutX="10.0" layoutY="434.0" prefHeight="46.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="46.0" prefWidth="178.0" text="Graphics Package Price:" textAlignment="CENTER" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="graphicsPackagePriceLabelSubmit" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="46.0" prefWidth="150.0" text="0.0" textAlignment="CENTER" textFill="#55ff00">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="348.0" layoutY="10.0" prefHeight="466.0" prefWidth="338.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="40.0" prefWidth="283.0" text="Included In Package:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Italic" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="40.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="68.0" prefWidth="113.0" text="Audio:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="audioNameLabelSubmit" alignment="CENTER" prefHeight="58.0" prefWidth="167.0" text="Audio Name" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="System Italic" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox layoutX="10.0" layoutY="50.0" prefHeight="40.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="68.0" prefWidth="113.0" text="Speakers:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="speakersNameLabelSubmit" alignment="CENTER" prefHeight="58.0" prefWidth="167.0" text="Speakers Name" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="System Italic" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox layoutX="10.0" layoutY="90.0" prefHeight="40.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="68.0" prefWidth="113.0" text="Keyboard:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="keyboardNameLabelSubmit" alignment="CENTER" prefHeight="58.0" prefWidth="167.0" text="Keyboard Name" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="System Italic" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox layoutX="10.0" layoutY="130.0" prefHeight="40.0" prefWidth="327.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="68.0" prefWidth="113.0" text="Mouse:" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="mouseNameLabelSubmit" alignment="CENTER" prefHeight="58.0" prefWidth="167.0" text="Mouse Name" textFill="WHITESMOKE">
+                                                   <font>
+                                                      <Font name="System Italic" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label alignment="CENTER" prefHeight="40.0" prefWidth="292.0" text="Base Package Price:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="basePackagePriceSubmit" alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="40.0" prefWidth="292.0" text="0.0" textFill="#51ff00">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="199.0" prefWidth="980.0">
+                                 <children>
+                                    <VBox prefHeight="198.0" prefWidth="245.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="131.0" prefWidth="245.0" text="Sub-Total Price:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="subTotalPriceSubmit" alignment="CENTER" prefHeight="89.0" prefWidth="245.0" text="0.0" textAlignment="CENTER" textFill="#48ff00">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="198.0" prefWidth="245.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="131.0" prefWidth="245.0" text="Sales Tax:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="salesTaxTotalSubmit" alignment="CENTER" prefHeight="89.0" prefWidth="245.0" text="0.0" textAlignment="CENTER" textFill="#48ff00">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="255.0" layoutY="10.0" prefHeight="198.0" prefWidth="245.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="131.0" prefWidth="245.0" text="Shipping:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="shippingTotalSubmit" alignment="CENTER" prefHeight="89.0" prefWidth="245.0" text="0.0" textAlignment="CENTER" textFill="#48ff00">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="500.0" layoutY="10.0" prefHeight="198.0" prefWidth="277.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="131.0" prefWidth="245.0" text="Grand Total:" textFill="WHITESMOKE" underline="true">
+                                             <font>
+                                                <Font name="Monospaced Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="grandTotalPriceSubmit" alignment="CENTER" prefHeight="89.0" prefWidth="245.0" text="0.0" textAlignment="CENTER" textFill="#48ff00">
+                                             <font>
+                                                <Font name="Monospaced Regular" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
                </children>
             </Pane>
          </children>
