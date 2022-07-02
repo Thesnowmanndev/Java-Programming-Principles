@@ -1,4 +1,4 @@
-![Image of Java Logo](https://cdn.freelogovectors.net/svg05/java-logo.svg)
+![Image of Java Logo](https://codehustler.org/wp-content/uploads/2012/12/java_logo.png)
 
 # Java Programming Principles 
 
